@@ -1,11 +1,15 @@
-import type { LoadQueryOptions } from "../lib/store";
-import { loadQuery } from "../lib/store";
+"use server";
 
 import type { SanityHeader } from "../schema/presentation/layout/header";
-
+import { sanityFetch } from "@/sanity/lib/live";
 import { getHeaderQuery } from "./queries/header";
 
-const getHeader = (options?: LoadQueryOptions) =>
-  loadQuery<SanityHeader | null>(getHeaderQuery, undefined, options);
+const getHeader = async (): Promise<SanityHeader | null> => {
+  const { data } = await sanityFetch({
+    query: getHeaderQuery,
+  });
+
+  return data;
+};
 
 export default getHeader;

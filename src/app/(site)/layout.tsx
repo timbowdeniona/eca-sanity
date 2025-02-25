@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 import { DisableDraftMode } from "@/components/sanity/draft-mode/disable-draft-mode";
+import { SanityLive } from "@/sanity/lib/live";
 
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -27,14 +28,15 @@ export default async function RootLayout({
     <html lang="en">
       <body className={openSans.variable}>
         <Header />
-        {children}
-        <Footer />
+        <main>{children}</main>
+        <SanityLive />
         {(await draftMode()).isEnabled && (
           <>
             <VisualEditing />
             <DisableDraftMode />
           </>
         )}
+        <Footer />
         <Analytics />
       </body>
     </html>

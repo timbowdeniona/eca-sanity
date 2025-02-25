@@ -1,5 +1,6 @@
-import { loadQuery } from "@sanity/react-loader";
-import { LoadQueryOptions } from "@/sanity/lib/store";
+"use server";
+
+import { sanityFetch } from "@/sanity/lib/live";
 import { SanityNewsArticle } from "../schema/information/newsArticle";
 import {
   getBlogArticleBySlugQuery,
@@ -25,43 +26,53 @@ const articlePageWithMetaQueries: Record<SanityArticleType, string> = {
   newsArticle: getNewsArticleWithMetaBySlugQuery,
 };
 
-export const getArticle = (
+export const getArticle = async (
   slug: string,
   type: SanityArticleType,
-  options?: LoadQueryOptions,
-) =>
-  loadQuery<SanityNewsArticle | null>(
-    articlePageQueries[type],
-    { slug },
-    options,
-  );
+): Promise<SanityNewsArticle | null> => {
+  const { data } = await sanityFetch({
+    query: articlePageQueries[type],
+    params: { slug },
+  });
+
+  return data;
+};
 
 /**
  * Get an article with meta data
  */
-export const getArticleWithMeta = (
+export const getArticleWithMeta = async (
   slug: string,
   type: SanityArticleType,
-  options?: LoadQueryOptions,
-) =>
-  loadQuery<SanityPageWithMetadata | null>(
-    articlePageWithMetaQueries[type],
-    { slug },
-    options,
-  );
+): Promise<SanityPageWithMetadata | null> => {
+  const { data } = await sanityFetch({
+    query: articlePageWithMetaQueries[type],
+    params: { slug },
+  });
+
+  return data;
+};
 
 /**
  * Get blog posts for sitemap
  */
-export const getBlogPostsForSitemap = (options?: LoadQueryOptions) =>
-  loadQuery<SanityBlogPost[]>(getBlogPostsForSitemapQuery, undefined, options);
+export const getBlogPostsForSitemap = async (): Promise<SanityBlogPost[]> => {
+  const { data } = await sanityFetch({
+    query: getBlogPostsForSitemapQuery,
+  });
+
+  return data;
+};
 
 /**
  * Get news articles for sitemap
  */
-export const getNewsArticlesForSitemap = (options?: LoadQueryOptions) =>
-  loadQuery<SanityNewsArticle[]>(
-    getNewsArticlesForSitemapQuery,
-    undefined,
-    options,
-  );
+export const getNewsArticlesForSitemap = async (): Promise<
+  SanityNewsArticle[]
+> => {
+  const { data } = await sanityFetch({
+    query: getNewsArticlesForSitemapQuery,
+  });
+
+  return data;
+};

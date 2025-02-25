@@ -1,9 +1,15 @@
+"use server";
+
 import type { SanityFooter } from "../schema/presentation/layout/footer";
-import type { LoadQueryOptions } from "../lib/store";
-import { loadQuery } from "../lib/store";
+import { sanityFetch } from "@/sanity/lib/live";
 import { getFooterQuery } from "./queries/footer";
 
-const getFooter = (options?: LoadQueryOptions) =>
-  loadQuery<SanityFooter | null>(getFooterQuery, undefined, options);
+const getFooter = async (): Promise<SanityFooter | null> => {
+  const { data } = await sanityFetch({
+    query: getFooterQuery,
+  });
+
+  return data;
+};
 
 export default getFooter;

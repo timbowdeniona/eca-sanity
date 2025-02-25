@@ -1,43 +1,61 @@
-import type { LoadQueryOptions } from '../lib/store';
-import { loadQuery } from '../lib/store';
+"use server";
 
-import type { Slug } from 'sanity';
-import type { SanityPage } from '@/sanity/schema/presentation/pageType';
+import type { Slug } from "sanity";
+import type { SanityPage } from "@/sanity/schema/presentation/pageType";
+import { sanityFetch } from "@/sanity/lib/live";
 
 import {
   PAGE_BY_SLUG_QUERY,
   SUBPAGE_BY_SLUG_QUERY,
   PAGE_WITH_META_QUERY,
   SUBPAGE_WITH_META_QUERY,
-} from './queries/page';
+} from "./queries/page";
 
-export const getPageBySlug = (pageSlug: string, options?: LoadQueryOptions) =>
-  loadQuery<SanityPage | null>(PAGE_BY_SLUG_QUERY, { pageSlug }, options);
+export const getPageBySlug = async (
+  pageSlug: string,
+): Promise<SanityPage | null> => {
+  const { data } = await sanityFetch({
+    query: PAGE_BY_SLUG_QUERY,
+    params: { pageSlug },
+  });
 
-export const getSubpageBySlug = (
+  return data;
+};
+
+export const getSubpageBySlug = async (
   parentSlug: string,
   currentSlug: string,
-  options?: LoadQueryOptions,
-) => loadQuery<SanityPage | null>(SUBPAGE_BY_SLUG_QUERY, { parentSlug, currentSlug }, options);
+): Promise<SanityPage | null> => {
+  const { data } = await sanityFetch({
+    query: SUBPAGE_BY_SLUG_QUERY,
+    params: { parentSlug, currentSlug },
+  });
 
-export const getPageWithMeta = (slug: string, options?: LoadQueryOptions) =>
-  loadQuery<Pick<SanityPage, '_id' | 'pageMeta' | 'slug'> | null>(
-    PAGE_WITH_META_QUERY,
-    {
-      slug,
-    },
-    options,
-  );
+  return data;
+};
 
-export const getPageSubpageWithMeta = (slug: string, subpage: string, options?: LoadQueryOptions) =>
-  loadQuery<{
-    slug: Slug;
-    subpages: Pick<SanityPage, '_id' | 'pageMeta' | 'slug'>[];
-  } | null>(
-    SUBPAGE_WITH_META_QUERY,
-    {
-      slug,
-      subpage,
-    },
-    options,
-  );
+export const getPageWithMeta = async (
+  slug: string,
+): Promise<Pick<SanityPage, "_id" | "pageMeta" | "slug"> | null> => {
+  const { data } = await sanityFetch({
+    query: PAGE_WITH_META_QUERY,
+    params: { slug },
+  });
+
+  return data;
+};
+
+export const getPageSubpageWithMeta = async (
+  slug: string,
+  subpage: string,
+): Promise<{
+  slug: Slug;
+  subpages: Pick<SanityPage, "_id" | "pageMeta" | "slug">[];
+} | null> => {
+  const { data } = await sanityFetch({
+    query: SUBPAGE_WITH_META_QUERY,
+    params: { slug, subpage },
+  });
+
+  return data;
+};

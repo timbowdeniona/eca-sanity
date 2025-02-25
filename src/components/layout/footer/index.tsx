@@ -9,7 +9,7 @@ export type Props = {
 };
 
 const RootFooter: FC = async () => {
-  const { data } = await getFooter();
+  const data = await getFooter();
   return <Footer footer={data} />;
 };
 

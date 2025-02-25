@@ -21,8 +21,8 @@ export default async function DynamicRoute(props: {
 }) {
   const { slug } = await props.params;
 
-  const { data } = await getPageBySlug(slug);
-  const { data: socialShare } = await getSocialShare();
+  const data = await getPageBySlug(slug);
+  const socialShare = await getSocialShare();
 
   if (!data) {
     return notFound();

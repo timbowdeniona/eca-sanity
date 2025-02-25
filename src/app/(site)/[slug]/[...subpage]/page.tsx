@@ -29,8 +29,8 @@ export default async function DynamicRoute(props: {
   // Get the parent slug in the path (parent page)
   const parentSlug = subpage[subpage.length - 2] || slug;
 
-  const { data } = await getSubpageBySlug(parentSlug, currentSlug);
-  const { data: socialShare } = await getSocialShare();
+  const data = await getSubpageBySlug(parentSlug, currentSlug);
+  const socialShare = await getSocialShare();
 
   if (!data) {
     return notFound();

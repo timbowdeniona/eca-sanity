@@ -12,8 +12,8 @@ export const generateMetadata = async (): Promise<Metadata> =>
   getPageMetadata("/");
 
 export default async function IndexRoute() {
-  const { data } = await getPageBySlug("/");
-  const { data: socialShare } = await getSocialShare();
+  const data = await getPageBySlug("/");
+  const socialShare = await getSocialShare();
 
   if (!data) {
     return notFound();
