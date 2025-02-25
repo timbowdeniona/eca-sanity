@@ -1,10 +1,14 @@
-import type { ComponentProps, HTMLAttributeAnchorTarget, ReactNode } from 'react';
-import Image from 'next/image';
+import type {
+  ComponentProps,
+  HTMLAttributeAnchorTarget,
+  ReactNode,
+} from "react";
+import Image from "next/image";
 
-import Link from '@/components/base/link';
-import XCircle from '../icons/XIcon';
-import LinkedInCircle from '../icons/LinkedInCircle';
-import YoutubeCircle from '../icons/YoutubeCircle';
+import Link from "@/components/base/link";
+import XCircle from "../icons/XIcon";
+import LinkedInCircle from "../icons/LinkedInCircle";
+import YoutubeCircle from "../icons/YoutubeCircle";
 
 export type LinkItem = {
   id: string;
@@ -21,7 +25,7 @@ type Props = {
   imageAlt: string;
   linkList: Array<Array<LinkItem>>;
   socialLinks: Array<LinkItem>;
-} & ComponentProps<'footer'>;
+} & ComponentProps<"footer">;
 
 export const Footer = ({
   image,
@@ -39,22 +43,24 @@ export const Footer = ({
       title: string;
     }
   > = {
-    'x.com': {
+    "x.com": {
       component: <XCircle className="size-10" />,
-      title: 'X',
+      title: "X",
     },
-    'linkedin.com': {
+    "linkedin.com": {
       component: <LinkedInCircle className="size-10" />,
-      title: 'LinkedIn',
+      title: "LinkedIn",
     },
-    'youtube.com': {
+    "youtube.com": {
       component: <YoutubeCircle className="size-10" />,
-      title: 'Youtube',
+      title: "Youtube",
     },
   };
 
   const filteredSocialLinks = socialLinks.map((item, index) => {
-    const icon = Object.keys(socialIcons).find((domain) => item.link.includes(domain));
+    const icon = Object.keys(socialIcons).find(domain =>
+      item.link.includes(domain),
+    );
     if (!icon) {
       return null;
     }
@@ -71,24 +77,28 @@ export const Footer = ({
 
   return (
     <footer className="flex flex-col">
-      <div className="bg-purple-20">
+      <div className="bg-sky-800">
         <div className="wrapper px-5 pb-12 pt-6 md:py-12 lg:px-10 xl:px-0">
           <div className="flex flex-col justify-around gap-6 md:h-[400px] md:flex-row lg:max-h-[312px] lg:justify-between">
-            <div className="relative mb-8 aspect-[180/80] h-24 w-auto shrink-0 md:mb-0 md:h-[120px]">
-              <Link aria-label={'Home'} className="absolute inset-0 z-10" href={'/'} />
+            <div className="relative mb-8 aspect-[120/80] h-24 w-auto shrink-0 md:mb-0 md:h-[120px]">
+              <Link
+                aria-label={"Home"}
+                className="absolute inset-0 z-10"
+                href={"/"}
+              />
               <Image
-                alt={imageAlt || ''}
+                alt={imageAlt || ""}
                 className="size-full"
                 height={80}
                 priority
                 src={image}
-                width={180}
+                width={120}
               />
             </div>
             <div className="mb-6 flex flex-col gap-4 md:mb-0 lg:grid lg:grid-cols-2 lg:gap-x-10">
               {linkList.map((list, index) => (
                 <ul className="flex flex-col gap-4 text-white" key={index}>
-                  {list.map((item) => (
+                  {list.map(item => (
                     <li className="lg:w-[270px] xl:w-[310px]" key={item.id}>
                       <Link
                         className="hover:text-purple-80 hover:underline"
@@ -107,7 +117,7 @@ export const Footer = ({
         </div>
       </div>
       {(children || disclaimer) && (
-        <div className="bg-purple text-white">
+        <div className="bg-sky-800 text-white">
           <div className="wrapper px-5 py-3 lg:px-10 xl:px-0">
             <div>{children || disclaimer}</div>
           </div>

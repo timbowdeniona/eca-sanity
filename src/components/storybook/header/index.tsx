@@ -1,22 +1,26 @@
-'use client';
+"use client";
 
-import type { ComponentProps, HTMLAttributeAnchorTarget, ReactNode } from 'react';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { usePathname, useSearchParams } from 'next/navigation';
+import type {
+  ComponentProps,
+  HTMLAttributeAnchorTarget,
+  ReactNode,
+} from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { usePathname, useSearchParams } from "next/navigation";
 
-import Link from '@/components/base/link';
-import MenuCircle from '@/components/storybook/icons/MenuCircle';
-import useScreenSize from '@/hooks/use-screen-size';
-import { cn } from '@/utils/helpers/cn';
-import CloseCircle from '../icons/CloseCircle';
-import MoreHorizontal from '../icons/MoreHorizontal';
-import MobileMenu from './mobile-menu';
-import OverspillMenu from './overspill-menu';
-import Submenu from './submenu';
-import { TopBar } from './top-bar';
+import Link from "@/components/base/link";
+import MenuCircle from "@/components/storybook/icons/MenuCircle";
+import useScreenSize from "@/hooks/use-screen-size";
+import { cn } from "@/utils/helpers/cn";
+import CloseCircle from "../icons/CloseCircle";
+import MoreHorizontal from "../icons/MoreHorizontal";
+import MobileMenu from "./mobile-menu";
+import OverspillMenu from "./overspill-menu";
+import Submenu from "./submenu";
+import { TopBar } from "./top-bar";
 
-type LinkItemType = 'link' | 'emphasizedLink' | 'profile';
+type LinkItemType = "link" | "emphasizedLink" | "profile";
 
 // TODO: Clean up types
 export type LinkItem = {
@@ -47,7 +51,7 @@ type Props = {
   links: Array<LinkItem>;
   topBarLinks: Array<LinkItem>;
   signIn?: ReactNode;
-} & ComponentProps<'div'>;
+} & ComponentProps<"div">;
 
 export const Header = ({
   children,
@@ -83,7 +87,7 @@ export const Header = ({
   };
 
   const toggleMenu = () => {
-    setMobileMenuOpen((prev) => !prev);
+    setMobileMenuOpen(prev => !prev);
     setSubmenu(undefined);
   };
 
@@ -97,12 +101,12 @@ export const Header = ({
   return (
     <header
       className={cn(
-        'flex flex-col',
+        "flex flex-col",
         // TODO: Temporarily disable mobile sticky nav to fix overflow and z-index issues
         // Sticky on mobile
-        'sticky top-0 shadow-sm z-10',
+        "sticky top-0 shadow-sm z-10",
         // // Static on desktop, undo all sticky
-        'md:static md:top-auto md:shadow-none md:z-auto',
+        "md:static md:top-auto md:shadow-none md:z-auto",
       )}
     >
       <div className="relative z-50">
@@ -110,33 +114,40 @@ export const Header = ({
           {children}
         </TopBar>
 
-        <div className="h-[10px] w-full bg-purple-40" />
-        <nav className="flex h-[72px] w-full flex-row items-center justify-center bg-purple md:h-28">
+        <div className="h-[10px] w-full bg-sky-300" />
+        <nav className="flex h-[72px] w-full flex-row items-center justify-center bg-sky-500 md:h-28">
           <div className="wrapper px-3 py-5 md:px-5 xl:p-0">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-[56px]">
-                <div className="relative aspect-[180/80] h-24 md:h-[120px]">
-                  <Link aria-label={'Home'} className="absolute inset-0 z-10" href={'/'} />
+                <div className="relative aspect-[120/80] h-24 md:h-[120px]">
+                  <Link
+                    aria-label={"Home"}
+                    className="absolute inset-0 z-10"
+                    href={"/"}
+                  />
                   <Image
-                    alt={imageAlt || ''}
+                    alt={imageAlt || ""}
                     className="size-full"
                     height={80}
                     priority
                     src={image}
-                    width={180}
+                    width={120}
                   />
                 </div>
                 <ul className="hidden h-7 items-center gap-6 text-white md:flex">
                   {links.map((item, index) => (
                     <li
-                      className={cn('h-full md:relative', index > 1 && 'hidden lg:flex')}
+                      className={cn(
+                        "h-full md:relative",
+                        index > 1 && "hidden lg:flex",
+                      )}
                       key={item.id}
                     >
                       <Link
                         className="text-[16px] font-semibold leading-[24px] lg:text-[18px] lg:leading-[28px]"
-                        href={item.link ?? '#'}
-                        onClick={(event) => {
-                          if (['lg', 'xl'].includes(screenSize || '')) {
+                        href={item.link ?? "#"}
+                        onClick={event => {
+                          if (["lg", "xl"].includes(screenSize || "")) {
                             return;
                           }
                           if (index > 1) {
@@ -153,7 +164,7 @@ export const Header = ({
                           event.stopPropagation();
                         }}
                         onMouseEnter={() => {
-                          if (!['lg', 'xl'].includes(screenSize || '')) {
+                          if (!["lg", "xl"].includes(screenSize || "")) {
                             return;
                           }
                           if (index > 1) {
@@ -170,24 +181,27 @@ export const Header = ({
                       {submenu?.id === item.id && (
                         <>
                           <div className="absolute -bottom-3 h-1 w-full bg-red" />
-                          {links.map((item) => (
+                          {links.map(item => (
                             <Submenu
                               className={cn(
                                 // Remove transition on hover desktop
-                                'lg:transition-none top-[82px]',
-                                !submenu && 'transition-all',
+                                "lg:transition-none top-[82px]",
+                                !submenu && "transition-all",
                                 // No need to transition if submenu is already open
-                                submenu && 'md:transition-none',
+                                submenu && "md:transition-none",
                                 submenu?.id === item.id &&
-                                  'md:translate-y-0 z-50 pointer-events-auto opacity-100',
-                                submenu?.id !== item.id && 'z-0 pointer-events-none opacity-0',
+                                  "md:translate-y-0 z-50 pointer-events-auto opacity-100",
+                                submenu?.id !== item.id &&
+                                  "z-0 pointer-events-none opacity-0",
                                 submenu?.id !== item.id &&
                                   overspillMenuOpen &&
-                                  'md:-translate-y-[220px]',
+                                  "md:-translate-y-[220px]",
                                 submenu?.id !== item.id &&
                                   !overspillMenuOpen &&
-                                  'md:-translate-y-[120px]',
-                                overspillMenuOpen ? 'md:top-[220px]' : 'md:top-[69px]',
+                                  "md:-translate-y-[120px]",
+                                overspillMenuOpen
+                                  ? "md:top-[220px]"
+                                  : "md:top-[69px]",
                               )}
                               key={item.id}
                               links={item.links}
@@ -197,7 +211,7 @@ export const Header = ({
                               }}
                               onCloseMenu={closeMenu}
                               onMouseLeave={() => {
-                                if (!['lg', 'xl'].includes(screenSize || '')) {
+                                if (!["lg", "xl"].includes(screenSize || "")) {
                                   return;
                                 }
                                 setOverspillMenuOpen(false);
@@ -212,14 +226,16 @@ export const Header = ({
                   <li className="relative flex h-full items-center lg:hidden">
                     <button
                       onClick={() => {
-                        setOverspillMenuOpen((prev) => !prev);
+                        setOverspillMenuOpen(prev => !prev);
                         setSubmenu(undefined);
                       }}
                     >
                       <MoreHorizontal className="h-[6px] w-[26px]" />
                       <span className="sr-only">Toggle Overspill Menu</span>
                     </button>
-                    {overspillMenuOpen && <div className="absolute -bottom-3 h-1 w-full bg-red" />}
+                    {overspillMenuOpen && (
+                      <div className="absolute -bottom-3 h-1 w-full bg-red" />
+                    )}
                   </li>
                 </ul>
               </div>
@@ -266,14 +282,14 @@ export const Header = ({
             setOverspillMenuOpen(false);
             setSubmenu(undefined);
           }}
-          onMenuClick={(link) => setSubmenu(link)}
+          onMenuClick={link => setSubmenu(link)}
           show={overspillMenuOpen}
         />
 
         <MobileMenu
           links={[...links, ...topBarLinks]}
           onClose={closeMenu}
-          onMenuClick={(link) => setSubmenu(link)}
+          onMenuClick={link => setSubmenu(link)}
           show={mobileMenuOpen && !submenu}
         />
       </div>

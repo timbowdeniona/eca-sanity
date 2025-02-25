@@ -39,7 +39,7 @@ export const getArticlePageMetadata = async (
   slug: string,
   type: SanityArticleType,
 ): Promise<Metadata> => {
-  const { data: page } = await getArticleWithMeta(slug, type);
+  const page = await getArticleWithMeta(slug, type);
 
   const url = [
     "",

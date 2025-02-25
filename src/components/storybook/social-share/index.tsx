@@ -74,7 +74,7 @@ const SocialShare = ({ items }: Props) => {
       <div className="wrapper px-5 py-2 lg:px-10 xl:px-0">
         <div className="flex flex-col items-end">
           <div className="flex flex-row items-center gap-4">
-            <p className="font-semibold text-purple">Share this page</p>
+            <p className="font-semibold text-sky-900">Share this page</p>
             <ul className="flex shrink-0 gap-4">{filteredSocialShareItems}</ul>
           </div>
         </div>

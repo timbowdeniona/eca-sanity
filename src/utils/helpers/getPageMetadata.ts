@@ -63,7 +63,7 @@ export const getPageMetadata = async (
   slug: string,
   subpage?: string,
 ): Promise<Metadata> => {
-  const { data: page } = await getPageWithMeta(slug);
+  const page = await getPageWithMeta(slug);
 
   const url = ["", ...[trim(slug, "/"), subpage].filter(slug => !!slug)].join(
     "/",
@@ -76,7 +76,7 @@ export const getPageSubpageMetadata = async (
   slug: string,
   subpage: string,
 ): Promise<Metadata> => {
-  const { data: page } = await getPageSubpageWithMeta(slug, subpage);
+  const page = await getPageSubpageWithMeta(slug, subpage);
 
   const url = ["", ...[slug, subpage].filter(slug => !!slug)].join("/");
 
