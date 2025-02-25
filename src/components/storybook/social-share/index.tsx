@@ -27,25 +27,25 @@ const SocialShare = ({ items }: Props) => {
   > = {
     whatsapp: {
       component: (
-        <WhatsAppShareIcon className="size-8 fill-purple hover:fill-purple-40" />
+        <WhatsAppShareIcon className="size-8 fill-sky-700 hover:fill-sky-400" />
       ),
       title: "WhatsApp",
     },
     linkedin: {
       component: (
-        <LinkedInShareIcon className="size-8 fill-purple hover:fill-purple-40" />
+        <LinkedInShareIcon className="size-8 fill-sky-700 hover:fill-sky-400" />
       ),
       title: "LinkedIn",
     },
     facebook: {
       component: (
-        <FacebookShareIcon className="size-8 fill-purple hover:fill-purple-40" />
+        <FacebookShareIcon className="size-8 fill-sky-700 hover:fill-sky-400" />
       ),
       title: "Facebook",
     },
     x: {
       component: (
-        <XShareIcon className="size-8 fill-purple hover:fill-purple-40" />
+        <XShareIcon className="size-8 fill-sky-700 hover:fill-sky-400" />
       ),
       title: "X",
     },
