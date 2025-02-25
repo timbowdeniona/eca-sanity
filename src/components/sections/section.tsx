@@ -27,7 +27,6 @@ import type { SanityTextBlock } from "@/sanity/schema/presentation/sectionType/s
 import type { SanityThreeColumn } from "@/sanity/schema/presentation/sectionType/sections/threeColumn";
 import type { SanityTwoColumn } from "@/sanity/schema/presentation/sectionType/sections/twoColumn";
 import type { SanityVideoCards } from "@/sanity/schema/presentation/sectionType/sections/videoCards";
-import type { SanityVideoPlayer } from "@/sanity/schema/presentation/sectionType/sections/videoPlayer";
 // Above the fold sections must be statically imported
 import HeroSection from "./hero";
 import MastheadSection from "./masthead";
@@ -55,7 +54,6 @@ const TextBlock = dynamic(() => import("./text-block"));
 const ThreeColumnSection = dynamic(() => import("./three-column"));
 const TwoColumnSection = dynamic(() => import("./two-column"));
 const VideoCardsSection = dynamic(() => import("./video-cards"));
-const VideoPlayerSection = dynamic(() => import("./video-player"));
 
 type Props = {
   children?: (section: SanitySection) => ReactNode;
@@ -133,10 +131,6 @@ const Section: FC<Props> = ({ children, className, id, section }) => {
             return <TwoColumnSection twoColumn={section as SanityTwoColumn} />;
           case "videoCards":
             return <VideoCardsSection section={section as SanityVideoCards} />;
-          case "videoPlayer":
-            return (
-              <VideoPlayerSection section={section as SanityVideoPlayer} />
-            );
           default:
             return children?.(section) ?? <></>;
         }

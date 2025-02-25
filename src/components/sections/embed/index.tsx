@@ -8,11 +8,10 @@ interface Props {
 }
 
 const EmbedSection: FC<Props> = ({ section }) => {
-  const { consent, embedLink, minHeight } = section;
+  const { embedLink, minHeight } = section;
 
   return (
     <Embed
-      consent={consent}
       embedLink={embedLink?.url ?? embedLink?.internal}
       minHeight={minHeight}
     />

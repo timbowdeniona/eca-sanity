@@ -14,8 +14,8 @@ import { openSans } from "@/styles/fonts";
 import "@/styles/globals.scss";
 
 export const metadata: Metadata = {
-  title: "AQA Microsites",
-  description: "AQA Microsite Builder",
+  title: "IONA Sanity Demo",
+  description: "IONA Sanity Demo",
 };
 
 export default async function RootLayout({

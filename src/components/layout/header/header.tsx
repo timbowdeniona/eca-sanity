@@ -5,7 +5,7 @@ import type { MainLinkMember } from "@/sanity/schema/presentation/layout/header"
 import type { LinkItem } from "@/components/storybook/header";
 import HeaderComponent from "@/components/storybook/header";
 import RichText from "@/components/sanity/richtext";
-import logo from "@/../public/AQA_GAS_logo.svg";
+import logo from "@/../public/IONA_logo.svg";
 
 type Props = {
   header: SanityHeader | null;
@@ -64,7 +64,7 @@ const Header: FC<Props> = ({ header }) => {
   return (
     <HeaderComponent
       image={logo}
-      imageAlt={"AQA"}
+      imageAlt={"IONA"}
       links={links}
       topBarLinks={topBarLinks}
     >

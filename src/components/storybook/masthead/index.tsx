@@ -8,7 +8,6 @@ import Image from "next/image";
 import { cn } from "@/utils/helpers/cn";
 import { Button } from "../button";
 import { toVideoEmbedUrl } from "@/utils/helpers/toVideoEmbedUrl";
-import VideoPlayerIframe from "@/components/storybook/video-player/iframe";
 
 type MastheadProps = {
   children?: ReactNode;
@@ -94,9 +93,6 @@ export const Masthead = ({
               width={1024 / 3}
             />
           </picture>
-        )}
-        {mediaType === "video" && videoUrl && (
-          <VideoPlayerIframe alt={mediaAlt} src={toVideoEmbedUrl(videoUrl)} />
         )}
       </div>
       <div

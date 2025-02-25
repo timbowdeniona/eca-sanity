@@ -19,7 +19,6 @@ import spacer from "./sections/spacer";
 import textAndImage from "./sections/textAndImage";
 import textBlock from "./sections/textBlock";
 import videoCards from "./sections/videoCards";
-import videoPlayer from "./sections/videoPlayer";
 
 export const sections = [
   accordion,
@@ -43,5 +42,4 @@ export const sections = [
   textAndImage,
   textBlock,
   videoCards,
-  videoPlayer,
 ];

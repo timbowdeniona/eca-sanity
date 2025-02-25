@@ -3,7 +3,7 @@ import FooterComponent, { LinkItem } from "@/components/storybook/footer";
 
 import type { Props } from ".";
 import RichText from "@/components/sanity/richtext";
-import logo from "@/../public/AQA_GAS_logo.svg";
+import logo from "@/../public/IONA_logo.svg";
 
 const Footer: FC<Props> = ({ footer }) => {
   const linkList = footer?.links?.reduce(
@@ -34,7 +34,7 @@ const Footer: FC<Props> = ({ footer }) => {
   return (
     <FooterComponent
       image={logo}
-      imageAlt={"AQA"}
+      imageAlt={"IONA"}
       imageLink={"/"}
       linkList={linkList ?? []}
       socialLinks={socialLinks ?? []}

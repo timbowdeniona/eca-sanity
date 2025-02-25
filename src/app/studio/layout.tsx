@@ -8,8 +8,8 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "AQA GAS Studio",
-  description: "AQA Global Assessment Services Studio",
+  title: "IONA Sanity Demo",
+  description: "IONA Sanity Demo",
 };
 
 const StudioLayout: FC<Props> = ({ children }) => (

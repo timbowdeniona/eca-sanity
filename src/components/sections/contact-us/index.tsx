@@ -2,7 +2,6 @@ import type { FC } from "react";
 
 import type { SanityContactUs } from "@/sanity/schema/presentation/sectionType/sections/contactUs";
 import { ContactUs } from "@/components/storybook/contact-us";
-import { XTimeline } from "@/components/storybook/x-timeline";
 import { urlForImage } from "@/sanity/lib/image";
 
 type Props = {
@@ -25,13 +24,6 @@ const ContactUsSection: FC<Props> = ({ section }) => (
         secondaryColor="var(--aqa-purple-secondary)"
         telephone={section?.telephone}
       />
-      {section.xUsername && (
-        <XTimeline
-          alt={section.xTimelineAlt || ""}
-          headline={section.xHeadline}
-          username={section.xUsername}
-        />
-      )}
     </div>
   </section>
 );
