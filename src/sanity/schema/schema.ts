@@ -27,6 +27,7 @@ export const information = [
   blogPost,
   button,
   card,
+  club,
   imageSet,
   keyFactImage,
   keyFactText,
