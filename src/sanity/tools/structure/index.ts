@@ -4,6 +4,7 @@ import { DocumentsIcon } from "@sanity/icons";
 import { MasterDetailIcon } from "@sanity/icons";
 import { EnvelopeIcon } from "@sanity/icons";
 import { ProjectsIcon } from "@sanity/icons";
+import { IoShirtOutline } from "react-icons/io5";
 
 import { filterItems } from "./utils";
 import { sections } from "@/sanity/schema/presentation/sectionType";
@@ -51,6 +52,10 @@ export const structure = (S: StructureBuilder) =>
         .title("Blogs")
         .icon(MasterDetailIcon)
         .child(S.documentList().title("Blogs").filter('_type == "blogPost"')),
+      S.listItem()
+        .title("Clubs")
+        .icon(IoShirtOutline)
+        .child(S.documentList().title("Clubs").filter('_type == "club"')),
       S.divider(),
       // All Sections
       S.listItem()
