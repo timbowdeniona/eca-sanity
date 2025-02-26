@@ -80,7 +80,7 @@ export const Footer = ({
       <div className="bg-sky-800">
         <div className="wrapper px-5 pb-12 pt-6 md:py-12 lg:px-10 xl:px-0">
           <div className="flex flex-col justify-around gap-6 md:h-[400px] md:flex-row lg:max-h-[312px] lg:justify-between">
-            <div className="relative mb-8 aspect-[120/80] h-24 w-auto shrink-0 md:mb-0 md:h-[120px]">
+            <div className="relative mb-8 aspect-[80/60] h-24 w-auto shrink-0 md:mb-0">
               <Link
                 aria-label={"Home"}
                 className="absolute inset-0 z-10"
@@ -89,10 +89,10 @@ export const Footer = ({
               <Image
                 alt={imageAlt || ""}
                 className="size-full"
-                height={80}
+                height={60}
                 priority
                 src={image}
-                width={120}
+                width={80}
               />
             </div>
             <div className="mb-6 flex flex-col gap-4 md:mb-0 lg:grid lg:grid-cols-2 lg:gap-x-10">

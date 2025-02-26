@@ -49,7 +49,9 @@ export const Masthead = ({
   videoUrl,
 }: MastheadProps) => {
   const bgColorClass =
-    variant === "primary" ? "bg-purple text-white" : "bg-grey text-purple";
+    variant === "primary"
+      ? "bg-orange-400 text-white"
+      : "bg-orange-800 text-white";
 
   return (
     <section

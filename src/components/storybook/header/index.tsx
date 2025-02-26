@@ -119,7 +119,7 @@ export const Header = ({
           <div className="wrapper px-3 py-5 md:px-5 xl:p-0">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-[56px]">
-                <div className="relative aspect-[120/80] h-24 md:h-[120px]">
+                <div className="relative aspect-[80/60] h-24">
                   <Link
                     aria-label={"Home"}
                     className="absolute inset-0 z-10"
@@ -128,10 +128,10 @@ export const Header = ({
                   <Image
                     alt={imageAlt || ""}
                     className="size-full"
-                    height={80}
+                    height={60}
                     priority
                     src={image}
-                    width={120}
+                    width={80}
                   />
                 </div>
                 <ul className="hidden h-7 items-center gap-6 text-white md:flex">

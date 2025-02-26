@@ -40,7 +40,7 @@ export const Hero = ({
   ctaTarget,
 }: HeroProps) => {
   const bgColorClass =
-    variant === "primary" ? "bg-purple text-white" : "bg-dark-red text-white";
+    variant === "primary" ? "bg-sky-500 text-white" : "bg-sky-900 text-white";
 
   return (
     <section className={cn("@container flex flex-col relative", bgColorClass)}>
