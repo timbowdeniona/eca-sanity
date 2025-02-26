@@ -17,7 +17,6 @@ export type SanityNewsArticle = SanityDocument & {
   articleImage?: SanityImage;
   badgeVariant: SanityAQAColour;
   badgeText: string;
-  newsType: SanityAQANewsType;
   newsDate: Date;
   newsEndDate?: Date;
   showContactDetails: boolean;
@@ -36,43 +35,6 @@ export type SanityNewsArticle = SanityDocument & {
   openInNewTab?: boolean;
   pageMeta?: SanityPageMeta;
   categories: Array<SanityNewsCategory>;
-};
-
-export type SanityAQANewsType =
-  | "aboutUs"
-  | "examsAdministration"
-  | "professionalDevelopment"
-  | "students"
-  | "teaching"
-  | "conferences"
-  | "examsAndModerators"
-  | "keyDates"
-  | "newResources"
-  | "news"
-  | "newSpecifications"
-  | "ofqualAnnouncement"
-  | "onlineStandardisation"
-  | "policy"
-  | "results"
-  | "seniorLeadership";
-
-const newsTypes: Record<SanityAQANewsType, string> = {
-  aboutUs: "About Us",
-  examsAdministration: "Exams Administration",
-  professionalDevelopment: "Professional Development",
-  students: "Students",
-  teaching: "Teaching",
-  conferences: "Conferences",
-  examsAndModerators: "Exams and Moderators",
-  keyDates: "Key Dates",
-  newResources: "News Resources",
-  news: "News",
-  newSpecifications: "New Specifications",
-  ofqualAnnouncement: "Ofqual Announcement",
-  onlineStandardisation: "Online Standardisation",
-  policy: "Policy",
-  results: "Results",
-  seniorLeadership: "Senior Leadership",
 };
 
 export default defineType({
@@ -181,26 +143,6 @@ export default defineType({
       name: "pageMeta",
       title: "Page Meta",
       type: "pageMeta",
-    }),
-    defineField({
-      name: "newsType",
-      type: "array",
-      deprecated: {
-        reason:
-          'This field is deprecated and will soon be removed. Use "Categories" instead.',
-      },
-      of: [
-        {
-          type: "string",
-          options: {
-            list: Object.keys(newsTypes).map(value => ({
-              title: newsTypes[value as SanityAQANewsType],
-              value,
-            })),
-          },
-        },
-      ],
-      group: "article",
     }),
   ],
 });

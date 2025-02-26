@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { getPageMetadata } from "@/utils/helpers/getPageMetadata";
 
-import Page from "@/components/pages/page";
-import { getPageBySlug } from "@/sanity/services/getPage";
+import NewsPage from "@/components/pages/news/article";
+import { getArticle } from "@/sanity/services/getArticle";
 import getSocialShare from "@/sanity/services/getSocialShare";
 import { notFound } from "next/navigation";
 
@@ -15,17 +15,17 @@ export const generateMetadata = async (props: {
   return getPageMetadata(`${params.slug}`);
 };
 
-export default async function DynamicRoute(props: {
+export default async function NewsRoute(props: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await props.params;
 
-  const data = await getPageBySlug(slug);
+  const data = await getArticle(slug, "newsArticle");
   const socialShare = await getSocialShare();
 
   if (!data) {
     return notFound();
   }
 
-  return <Page breadcrumbEnabled data={data} socialShare={socialShare} />;
+  return <NewsPage data={data} socialShare={socialShare} />;
 }

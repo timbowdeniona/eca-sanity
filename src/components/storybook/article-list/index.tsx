@@ -5,7 +5,7 @@ import { ComponentProps, HTMLAttributeAnchorTarget } from "react";
 
 import ChevronRight from "@/components/storybook/icons/ChevronRight";
 
-type ArticleListItem = {
+export type ArticleListItem = {
   id: string | number;
   image?: string;
   imageAlt?: string;
@@ -17,7 +17,7 @@ type ArticleListItem = {
   openInNewTab?: boolean;
 };
 
-type ArticleListProps = {
+export type ArticleListProps = {
   title: string;
   variant: "primary" | "secondary";
   cta?: string;

@@ -81,10 +81,6 @@ const defineArticleContentSourceField = (
           if (!value) {
             return "Slug is required if Content Source is the Content Body";
           }
-
-          if (!value.current?.startsWith("/")) {
-            return 'Slug must start with a "/"';
-          }
         }
 
         return true;
@@ -95,6 +91,14 @@ const defineArticleContentSourceField = (
   defineRichTextField({
     name: "body",
     title: "Content Body",
+    hidden: ({ document }) => document?.contentSource !== "contentBody",
+    group: options.group,
+  }),
+
+  defineField({
+    name: "socialPost",
+    description: "The social post to be shared on social media",
+    type: "text",
     hidden: ({ document }) => document?.contentSource !== "contentBody",
     group: options.group,
   }),

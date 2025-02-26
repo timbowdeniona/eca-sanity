@@ -8,6 +8,7 @@ import {
   getBlogPostsForSitemapQuery,
   getNewsArticleBySlugQuery,
   getNewsArticlesForSitemapQuery,
+  getNewsArticlesQuery,
   getNewsArticleWithMetaBySlugQuery,
 } from "@/sanity/services/queries/article";
 import {
@@ -33,6 +34,17 @@ export const getArticle = async (
   const { data } = await sanityFetch({
     query: articlePageQueries[type],
     params: { slug },
+  });
+
+  return data;
+};
+
+/**
+ * Get all news articles
+ */
+export const getNewsArticles = async (): Promise<SanityNewsArticle[]> => {
+  const { data } = await sanityFetch({
+    query: getNewsArticlesQuery,
   });
 
   return data;

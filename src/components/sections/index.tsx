@@ -19,7 +19,7 @@ const Sections: FC<Props> = ({ children, sections }) => {
             index === (sections?.length ?? 0) - 1 && "is-last",
             index % 2 === 0 ? "is-odd" : "is-even",
           )}
-          id={section.sectionMeta?.id}
+          id={section?.sectionMeta?.id}
           key={`${section?._id}-${index}`}
           section={section}
         >

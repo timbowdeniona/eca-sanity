@@ -12,6 +12,12 @@ export const getNewsArticleBySlugQuery = groq`
   }
 `;
 
+export const getNewsArticlesQuery = groq`
+  *[_type == "newsArticle"] {
+    ${newsArticleFragment}
+  }
+`;
+
 export const getBlogArticleBySlugQuery = groq`
   *[_type == "blogPost" && slug.current == $slug][0] {
     ${blogPostFragment}
