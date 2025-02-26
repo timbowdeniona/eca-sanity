@@ -4,6 +4,7 @@ import { pageType } from "./presentation/pageType";
 import aqaColour from "./information/aqaColour";
 import button from "./information/button";
 import card from "./information/card";
+import club from "./information/club";
 import imageSet from "./information/imageSet";
 import keyFactImage from "./information/keyFactImage";
 import keyFactText from "./information/keyFactText";
