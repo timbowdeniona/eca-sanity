@@ -6,6 +6,7 @@ import CrumbTrail from "@/components/layout/crumb-trail";
 import { SanitySocialShare } from "@/sanity/schema/presentation/layout/socialShare";
 import { SanityNewsArticle } from "@/sanity/schema/information/newsArticle";
 import { ArticleList } from "@/components/storybook/article-list";
+import { makeImageUrl } from "@/sanity/lib/image";
 
 export interface NewsListingPageProps {
   data: SanityNewsArticle[] | null;
@@ -21,7 +22,7 @@ const NewsListingPage: FC<NewsListingPageProps> = ({ data, socialShare }) => {
       headline: article.title,
       summary: article.summary,
       link: article?.slug?.current ?? "",
-      image: article.image,
+      image: makeImageUrl(article.articleImage),
       date: article.date,
       description: article.description,
       highlightedText: article.highlightedText,
