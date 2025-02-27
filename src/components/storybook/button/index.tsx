@@ -1,4 +1,4 @@
-import { ComponentProps, CSSProperties } from "react";
+import { ComponentProps } from "react";
 
 import Link from "@/components/base/link";
 import { cn } from "@/utils/helpers/cn";
@@ -13,8 +13,8 @@ type BaseColorProps = {
 
 type CustomColorProps = {
   color?: "custom";
-  customColor: CSSProperties["color"];
-  customHoverColor: CSSProperties["color"];
+  customColor: string;
+  customHoverColor: string;
 };
 
 type LinkProps = {
@@ -84,24 +84,35 @@ const variantColors: Record<string, Record<string, string>> = {
     tertiary: "text-white fill-white hover:text-grey hover:fill-grey",
   },
   custom: {
-    icon: "bg-white text-[color:var(--button-color)] fill-[color:var(--button-color)] border-[color:var(--button-color)] hover:text-[color:var(--button-hover-color)] hover:fill-[color:var(--button-hover-color)] hover:border-[color:var(--button-hover-color)]",
-    primary:
-      "bg-[color:var(--button-color)] text-white fill-white border-[color:var(--button-color)] hover:bg-[color:var(--button-hover-color)] hover:border-[color:var(--button-hover-color)]",
-    secondary:
-      "bg-white text-[color:var(--button-color)] fill-[color:var(--button-color)] border-[color:var(--button-color)] hover:text-[color:var(--button-hover-color)] hover:fill-[color:var(--button-hover-color)] hover:border-[color:var(--button-hover-color)]",
-    tertiary:
-      "text-[color:var(--button-color)] fill-[color:var(--button-color)] hover:text-[color:var(--button-hover-color)] hover:fill-[color:var(--button-hover-color)]",
+    icon: "",
+    primary: "",
+    secondary: "",
+    tertiary: "",
   },
 };
 
 export const Button = ({
   className,
+  color,
   mode = "button",
-  color = "red",
   variant = "primary",
   ...props
 }: Props) => {
   const { customColor, customHoverColor, ...rest } = props as CustomColorProps;
+
+  let customClasses = "";
+  if (color === "custom" && customColor && customHoverColor) {
+    if (variant === "icon") {
+      customClasses = `bg-white text-${customColor} fill-${customColor} border-${customColor} hover:text-${customHoverColor} hover:fill-${customHoverColor} hover:border-${customHoverColor}`;
+    } else if (variant === "primary") {
+      customClasses = `bg-${customColor} text-white fill-white border-${customColor} hover:bg-${customHoverColor} hover:border-${customHoverColor}`;
+    } else if (variant === "secondary") {
+      customClasses = `bg-white text-${customColor} fill-${customColor} border-${customColor} hover:text-${customHoverColor} hover:fill-${customHoverColor} hover:border-${customHoverColor}`;
+    } else if (variant === "tertiary") {
+      customClasses = `text-${customColor} fill-${customColor} hover:text-${customHoverColor} hover:fill-${customHoverColor}`;
+    }
+  }
+
   const baseClassName = cn(
     "flex flex-row items-center rounded-[23px] h-12 text-base font-semibold leading-6 lg:text-[18px] lg:leading-[28px] transition-colors",
     variant === "icon" && "bg-transparent border-[1px] px-6",
@@ -110,27 +121,15 @@ export const Button = ({
     variant === "tertiary" && "bg-transparent",
     variant === "transparent" &&
       "bg-transparent border-[2px] border-white px-6 text-white fill-white hover:bg-white hover:text-[color:var(--subject-color-primary,var(--aqa-neutral))] hover:fill-[color:var(--subject-color-primary,var(--aqa-neutral))] group/button",
-    variantColors[color][variant],
+    color === "custom" ? customClasses : variantColors[color ?? "red"][variant],
     className,
   );
-  const style = {
-    "--button-color": customColor,
-    "--button-hover-color": customHoverColor,
-  } as CSSProperties;
 
   if (mode === "link") {
-    return (
-      <Link className={baseClassName} style={style} {...(rest as LinkProps)} />
-    );
+    return <Link className={baseClassName} {...(rest as LinkProps)} />;
   }
   if (mode === "button") {
-    return (
-      <button
-        className={baseClassName}
-        style={style}
-        {...(rest as ButtonProps)}
-      />
-    );
+    return <button className={baseClassName} {...(rest as ButtonProps)} />;
   }
 
   throw new Error(`Invalid mode prop: ${mode}`);

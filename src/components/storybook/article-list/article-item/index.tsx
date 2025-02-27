@@ -29,7 +29,7 @@ export const ArticleItem = ({
 }: ArticleItemProps) => {
   // NOTE: The @container class is (should be) defined in the parent component
   return (
-    <article className="group relative flex flex-col bg-white @4xl:flex-row @cmd:gap-6">
+    <article className="group relative flex flex-col bg-cyan-800 @4xl:flex-row @cmd:gap-6">
       <Link
         aria-label={summary}
         className="absolute inset-0 z-10"
@@ -55,11 +55,9 @@ export const ArticleItem = ({
         </div>
       </div>
       <div className="flex flex-col items-start gap-1 self-stretch pb-6 pl-6 pr-4 pt-4 @4xl:p-6 @4xl:py-4 @4xl:pl-0">
-        <p className="text-cyan-800">{highlightedText}</p>
-        <h3 className="group-hover:text-cyan-800 group-hover:underline">
-          {headline}
-        </h3>
-        <p className="line-clamp-3">{summary}</p>
+        <p className="text-white">{highlightedText}</p>
+        <h3 className="text-white group-hover:underline">{headline}</h3>
+        <p className="line-clamp-3 text-white">{summary}</p>
       </div>
     </article>
   );

@@ -41,7 +41,7 @@ export const ArticleList = ({
   }
 
   // TODO: `bg-transparent` and `borderClass`, we need to support proper bg color
-  const bgColorClass = variant === "primary" ? "bg-transparent" : "bg-cyan-800";
+  const bgColorClass = variant === "primary" ? "bg-white" : "bg-cyan-800";
   const titleColorClass =
     variant === "primary" ? "text-cyan-800" : "text-white";
   const labelVariant = variant === "primary" ? "cyan-800" : "red";
