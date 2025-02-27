@@ -9,7 +9,7 @@ import { SanitySocialShare } from "@/sanity/schema/presentation/layout/socialSha
 export interface PageProps {
   breadcrumbEnabled?: boolean;
   data: SanityPage | null;
-  socialShare: SanitySocialShare | null;
+  socialShare?: SanitySocialShare | null;
 }
 
 const Page: FC<PageProps> = ({ breadcrumbEnabled, data, socialShare }) => {
@@ -24,7 +24,9 @@ const Page: FC<PageProps> = ({ breadcrumbEnabled, data, socialShare }) => {
           variant="primary"
         />
       )}
-      <SocialShare rootUrl={rootUrl ?? ""} socialShare={socialShare} />
+      {socialShare && (
+        <SocialShare rootUrl={rootUrl ?? ""} socialShare={socialShare} />
+      )}
       <Sections sections={data?.sections} />;
     </main>
   );

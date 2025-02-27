@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { getPageSubpageMetadata } from "@/utils/helpers/getPageMetadata";
 
-import Page from "@/components/pages/page";
+import Page from "@/components/pages";
 import { getSubpageBySlug } from "@/sanity/services/getPage";
 import getSocialShare from "@/sanity/services/getSocialShare";
 import { notFound } from "next/navigation";
