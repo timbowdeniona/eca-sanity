@@ -8,6 +8,7 @@ import { cn } from "@/utils/helpers/cn";
 import { SanityClub } from "@/sanity/schema/information/club";
 import Image from "next/image";
 import { Button } from "../storybook/button";
+import { ResetIcon } from "@sanity/icons";
 
 interface ClubSearchProps {
   clubs: SanityClub[];
@@ -147,7 +148,7 @@ export const ClubSearch = ({
         <div className="wrapper">
           <h1 className="mb-4 text-4xl font-bold">{title}</h1>
           <p className="mb-8">
-            Find out which clubs are ECA Members in the current 2023/24 season.
+            Find out which clubs are ECA Members in the current 2024/25 season.
           </p>
 
           <div className="mb-6 flex flex-col gap-6 md:flex-row md:items-end">
@@ -160,30 +161,33 @@ export const ClubSearch = ({
               />
             </div>
 
-            <Dropdown
-              className="w-full md:w-64"
-              onChangeEvent={handleCountryChange}
-              options={countries.map(country => ({
-                label: country,
-                value: country,
-              }))}
-              placeholder="Select a country"
-              value={selectedCountry}
-            />
+            <div className="flex flex-row justify-around gap-2">
+              <Dropdown
+                className="w-full"
+                onChangeEvent={handleCountryChange}
+                options={countries.map(country => ({
+                  label: country,
+                  value: country,
+                }))}
+                placeholder="Select a country"
+                value={selectedCountry}
+              />
 
-            <Dropdown
-              className="w-full md:w-64"
-              onChangeEvent={handleMemberTypeChange}
-              options={memberTypes}
-              placeholder="Select a member type"
-              value={memberType}
-            />
+              <Dropdown
+                className="w-full"
+                onChangeEvent={handleMemberTypeChange}
+                options={memberTypes}
+                placeholder="Select a member type"
+                value={memberType}
+              />
+            </div>
 
             <Button
-              className="h-12 bg-cyan-700 px-6 font-medium text-white hover:border-cyan-800 hover:bg-cyan-800 hover:text-white"
+              className="flex items-center gap-1 bg-cyan-700 font-medium text-white hover:border-cyan-800 hover:bg-cyan-800 hover:text-white"
               onClick={handleReset}
               variant="icon"
             >
+              <ResetIcon height={24} width={24} />
               Reset
             </Button>
           </div>
