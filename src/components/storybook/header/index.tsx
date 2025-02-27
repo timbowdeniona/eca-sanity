@@ -114,8 +114,8 @@ export const Header = ({
           {children}
         </TopBar>
 
-        <div className="h-[10px] w-full bg-sky-300" />
-        <nav className="flex h-[72px] w-full flex-row items-center justify-center bg-sky-500 md:h-28">
+        <div className="h-[10px] w-full bg-cyan-800" />
+        <nav className="flex h-[72px] w-full flex-row items-center justify-center bg-cyan-600 md:h-28">
           <div className="wrapper px-3 py-5 md:px-5 xl:p-0">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-[56px]">
@@ -180,7 +180,7 @@ export const Header = ({
                       </Link>
                       {submenu?.id === item.id && (
                         <>
-                          <div className="absolute -bottom-3 h-1 w-full bg-red" />
+                          <div className="absolute -bottom-3 h-1 w-full bg-cyan-500/50" />
                           {links.map(item => (
                             <Submenu
                               className={cn(

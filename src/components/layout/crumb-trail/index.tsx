@@ -12,7 +12,7 @@ import { titleCase } from "@/utils/helpers/titleCase";
 type Props = {
   currentPage: string;
   variant: "primary" | "secondary";
-  color?: "neutral" | "white";
+  colour?: "neutral" | "white";
   page?: SanityPage | null;
 };
 
@@ -20,12 +20,7 @@ const convertBreadcrumb = (breadcrumb: string) => {
   return titleCase(breadcrumb.replace(/-/g, " "));
 };
 
-const CrumbTrail: FC<Props> = ({
-  color = "white",
-  currentPage,
-  page,
-  variant,
-}) => {
+const CrumbTrail: FC<Props> = ({ colour, currentPage, page, variant }) => {
   const pathname = usePathname();
   const { title, breadcrumbs } = useMemo(() => {
     const paths = pathname.split("/").filter(path => path);
@@ -46,7 +41,7 @@ const CrumbTrail: FC<Props> = ({
 
   return (
     <CrumbTrailComponent
-      color={color}
+      colour={colour}
       currentPage={title}
       items={breadcrumbs}
       variant={variant}

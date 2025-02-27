@@ -26,7 +26,7 @@ const EcaMembersPage: FC<PageProps> = ({
     <main className="bg-grey">
       {breadcrumbEnabled && (
         <CrumbTrail
-          color="neutral"
+          colour="neutral"
           currentPage={page?.title ?? ""}
           variant="primary"
         />

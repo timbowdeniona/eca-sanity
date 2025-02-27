@@ -1,10 +1,8 @@
-import type { ComponentProps, CSSProperties } from "react";
+import type { ComponentProps } from "react";
 import React, { forwardRef } from "react";
 import Image from "next/image";
 
 import { cn } from "@/utils/helpers/cn";
-import PolygonRhombus from "../icons/PolygonRhombus";
-import PolygonRhombusMask from "../icons/PolygonRhombusMask";
 
 type TertiaryTitle = {
   variant: "tertiary";
@@ -16,15 +14,14 @@ type TertiaryTitle = {
 type SecondaryTitle = {
   variant: "secondary";
   description?: string;
-  color: "purple" | "white";
+  color: string;
 };
 
 type PrimaryTitle = {
   variant: "primary";
   subtitle?: string;
-  primaryColor: CSSProperties["color"];
-  secondaryColor: CSSProperties["color"];
-  textColor?: CSSProperties["color"];
+  color: string;
+  textColor?: string;
 };
 
 type TitleBarProps = {
@@ -34,39 +31,27 @@ type TitleBarProps = {
 
 export const TitleBar = forwardRef<HTMLElement, TitleBarProps>(
   ({ variant, className, title, ...props }, ref) => {
-    const {
-      subtitle,
-      primaryColor,
-      secondaryColor,
-      textColor = "white",
-    } = props as PrimaryTitle;
-    const { color } = props as SecondaryTitle;
+    const { subtitle, color, textColor = "text-white" } = props as PrimaryTitle;
+    const { color: secondaryColor } = props as SecondaryTitle;
     const { image, imageAlt } = props as TertiaryTitle;
     const { description } = props as SecondaryTitle | TertiaryTitle;
-
-    const style = {
-      "--title-bar-primary-color": primaryColor,
-      "--title-bar-secondary-color": secondaryColor,
-      "--title-bar-text-color": textColor,
-    } as CSSProperties;
 
     return (
       <header
         className={cn(
           "z-0 flex overflow-hidden relative",
-          variant === "primary" &&
-            "fill-[color:var(--title-bar-secondary-color)] bg-[color:var(--title-bar-primary-color)] text-[color:var(--title-bar-text-color)]",
+          variant === "primary" && `bg-${color} ${textColor}`,
+          variant === "secondary" && `bg-${secondaryColor}`,
           variant === "secondary" &&
-            color === "purple" &&
-            "fill-purple-20 bg-purple text-white",
-          variant === "secondary" && color === "white" && "fill-grey bg-white",
+            secondaryColor === "white" &&
+            "text-purple",
+          variant === "secondary" && secondaryColor !== "white" && "text-white",
           variant === "tertiary" && "bg-purple text-white",
           className,
         )}
         ref={ref}
-        style={style}
       >
-        {image ? (
+        {image && (
           <div
             className={cn(
               "absolute top-0 h-full",
@@ -75,26 +60,15 @@ export const TitleBar = forwardRef<HTMLElement, TitleBarProps>(
                 : "left-1/2 w-1/2",
             )}
           >
-            <div className="relative aspect-[16/9]  size-full overflow-hidden">
+            <div className="relative aspect-[16/9] size-full overflow-hidden">
               <Image
                 alt={imageAlt || ""}
                 className="size-full object-cover"
                 height={400}
                 src={image}
-                style={{
-                  mask: "url(#polygon-rhombus-mask)",
-                }}
                 width={1200}
               />
             </div>
-            <PolygonRhombusMask
-              className="h-full w-auto"
-              maskId="polygon-rhombus-mask"
-            />
-          </div>
-        ) : (
-          <div className="absolute left-1/2 top-0 z-20 h-full w-1/2">
-            <PolygonRhombus className="h-full w-auto" />
           </div>
         )}
 
@@ -110,7 +84,9 @@ export const TitleBar = forwardRef<HTMLElement, TitleBarProps>(
         >
           <h1
             className={cn(
-              variant === "secondary" && color === "white" && "text-purple",
+              variant === "secondary" &&
+                secondaryColor === "white" &&
+                "text-purple",
             )}
           >
             {title}

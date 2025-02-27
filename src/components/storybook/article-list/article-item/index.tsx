@@ -5,7 +5,7 @@ import Link from "@/components/base/link";
 import { Label } from "@/components/storybook/label";
 
 type ArticleItemProps = {
-  badgeVariant: "purple" | "grey" | "green" | "red";
+  badgeVariant: "cyan-800" | "grey" | "green" | "red";
   badge?: string;
   image?: string;
   imageAlt?: string;
@@ -55,8 +55,8 @@ export const ArticleItem = ({
         </div>
       </div>
       <div className="flex flex-col items-start gap-1 self-stretch pb-6 pl-6 pr-4 pt-4 @4xl:p-6 @4xl:py-4 @4xl:pl-0">
-        <p className="text-red">{highlightedText}</p>
-        <h3 className="group-hover:text-red group-hover:underline">
+        <p className="text-cyan-800">{highlightedText}</p>
+        <h3 className="group-hover:text-cyan-800 group-hover:underline">
           {headline}
         </h3>
         <p className="line-clamp-3">{summary}</p>

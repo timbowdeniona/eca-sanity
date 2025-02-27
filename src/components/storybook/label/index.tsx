@@ -3,7 +3,7 @@ import { ComponentProps, CSSProperties } from "react";
 import { cn } from "@/utils/helpers/cn";
 
 type VariantProps = {
-  variant?: "purple" | "grey" | "green" | "red" | "blue";
+  variant?: "cyan-800" | "grey" | "green" | "red" | "blue";
 };
 
 type CustomColorProps = {
@@ -15,7 +15,7 @@ type CustomColorProps = {
 type Props = (VariantProps | CustomColorProps) & ComponentProps<"span">;
 
 const variantClassNames = {
-  purple: "bg-purple text-white",
+  "cyan-800": "bg-cyan-800 text-white",
   grey: "bg-grey text-neutral",
   green: "bg-green text-white",
   red: "bg-red text-white",

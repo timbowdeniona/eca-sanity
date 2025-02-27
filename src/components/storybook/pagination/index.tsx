@@ -44,11 +44,11 @@ export const Pagination = ({
   return (
     <div className="flex max-w-full items-center justify-center" {...props}>
       <button
-        className="group flex h-12 w-10 flex-none items-center justify-center border border-purple-80 bg-white hover:bg-purple-80 active:bg-purple disabled:opacity-50 disabled:hover:bg-white"
+        className="group flex h-12 w-10 flex-none items-center justify-center border border-cyan-700 bg-white hover:bg-cyan-700 active:bg-cyan-700 disabled:opacity-50 disabled:hover:bg-white"
         disabled={currentPage === 1}
         onClick={() => goToPage(currentPage - 1)}
       >
-        <ChevronLeft className="fill-purple group-active:fill-white group-disabled:fill-purple-80" />
+        <ChevronLeft className="fill-cyan-700 group-hover:fill-white group-active:fill-white group-disabled:fill-cyan-800" />
         <span className="sr-only">Previous</span>
       </button>
       <div className="no-scrollbar overflow-x-scroll px-2 xl:overflow-hidden">
@@ -56,7 +56,7 @@ export const Pagination = ({
           {visiblePages.map(page =>
             currentPage !== page.value ? (
               <li
-                className="flex h-12 w-10 cursor-pointer items-center justify-center border border-purple-80 bg-white font-medium hover:bg-purple-80 active:bg-purple active:text-white"
+                className="flex h-12 w-10 cursor-pointer items-center justify-center border border-cyan-700 bg-white font-medium hover:bg-cyan-700 hover:text-white active:bg-cyan-700 active:text-white"
                 key={page.value}
                 onClick={() => goToPage(page.value)}
               >
@@ -64,7 +64,7 @@ export const Pagination = ({
               </li>
             ) : (
               <li
-                className="flex h-12 w-10 items-center justify-center bg-purple font-medium text-white"
+                className="flex h-12 w-10 items-center justify-center bg-cyan-700 font-medium text-white"
                 key={page.value}
               >
                 {page.label}
@@ -74,11 +74,11 @@ export const Pagination = ({
         </ul>
       </div>
       <button
-        className="group flex h-12 w-10 flex-none items-center justify-center border border-purple-80 bg-white hover:bg-purple-80 active:bg-purple disabled:opacity-50 disabled:hover:bg-white"
+        className="group flex h-12 w-10 flex-none items-center justify-center border border-cyan-700 bg-white hover:bg-cyan-700 active:bg-cyan-700 disabled:opacity-50 disabled:hover:bg-white"
         disabled={currentPage === pages.length}
         onClick={() => goToPage(currentPage + 1)}
       >
-        <ChevronRight className="fill-purple group-active:fill-white group-disabled:fill-purple-80" />
+        <ChevronRight className="fill-cyan-700 group-hover:fill-white group-active:fill-white group-disabled:fill-cyan-800" />
         <span className="sr-only">Next</span>
       </button>
     </div>

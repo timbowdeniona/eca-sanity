@@ -9,6 +9,8 @@ import { cn } from "@/utils/helpers/cn";
 
 type AlphabetTabsProps = {
   activeLetters: string[];
+  onLetterSelect?: (letter: string) => void;
+  selectedLetter?: string;
 } & ComponentProps<"section">;
 
 const letters = [
@@ -42,6 +44,8 @@ const letters = [
 
 export const AlphabetTabs = ({
   activeLetters,
+  onLetterSelect,
+  selectedLetter = "",
   ...props
 }: AlphabetTabsProps) => {
   const alphabetListRef = useRef<HTMLDivElement>(null);
@@ -104,6 +108,16 @@ export const AlphabetTabs = ({
     return false;
   };
 
+  const handleLetterClick = (letter: string) => {
+    if (onLetterSelect && activeLetters.includes(letter)) {
+      if (selectedLetter === letter) {
+        onLetterSelect("");
+      } else {
+        onLetterSelect(letter);
+      }
+    }
+  };
+
   return (
     <section className="flex w-full flex-col items-center bg-grey" {...props}>
       <div className="wrapper items-start py-6 md:py-8 lg:py-12 xl:items-center">
@@ -113,7 +127,7 @@ export const AlphabetTabs = ({
             <button
               className={cn(
                 "group flex h-12 w-10 flex-none items-center justify-center border select-none",
-                "border-purple-80 bg-white hover:bg-purple-80 active:bg-purple xl:hidden",
+                "border-cyan-700 bg-white hover:bg-cyan-700 active:bg-cyan-700 xl:hidden",
               )}
               onContextMenu={preventContextMenu}
               onMouseDown={() => startScrolling("left")}
@@ -122,7 +136,7 @@ export const AlphabetTabs = ({
               onTouchStart={() => startScrolling("left")}
               role="button"
             >
-              <ChevronLeft className="fill-purple group-active:fill-white" />
+              <ChevronLeft className="fill-cyan-700 group-hover:fill-white group-active:fill-white" />
               <span className="sr-only">Scroll left</span>
             </button>
           )}
@@ -134,18 +148,20 @@ export const AlphabetTabs = ({
             <ul className="flex flex-row gap-2">
               {letters.map(letter => (
                 <li key={letter}>
-                  {activeLetters?.includes(letter) ? (
-                    <Link
-                      className="flex h-12 w-10 items-center justify-center border border-purple-80 bg-white font-medium hover:bg-purple-80 active:bg-purple active:text-white"
-                      href={`#${letter}`}
-                    >
-                      {letter}
-                    </Link>
-                  ) : (
-                    <span className="flex h-12 w-10 items-center justify-center opacity-50">
-                      {letter}
-                    </span>
-                  )}
+                  <button
+                    className={cn(
+                      "flex h-12 w-10 items-center justify-center border",
+                      activeLetters.includes(letter)
+                        ? selectedLetter === letter
+                          ? "bg-cyan-700 text-white border-cyan-700"
+                          : "bg-white text-cyan-900 border-cyan-700 hover:bg-cyan-700 hover:text-white"
+                        : "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200",
+                    )}
+                    disabled={!activeLetters.includes(letter)}
+                    onClick={() => handleLetterClick(letter)}
+                  >
+                    {letter}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -153,7 +169,7 @@ export const AlphabetTabs = ({
           <button
             className={cn(
               "group flex h-12 w-10 flex-none items-center justify-center border select-none",
-              "border-purple-80 bg-white hover:bg-purple-80 active:bg-purple xl:hidden",
+              "border-cyan-700 bg-white hover:bg-cyan-700 active:bg-cyan-700 xl:hidden",
             )}
             onContextMenu={preventContextMenu}
             onMouseDown={() => startScrolling("right")}
@@ -162,7 +178,7 @@ export const AlphabetTabs = ({
             onTouchStart={() => startScrolling("right")}
             role="button"
           >
-            <ChevronRight className="fill-purple group-active:fill-white" />
+            <ChevronRight className="fill-cyan-700 group-hover:fill-white group-active:fill-white" />
             <span className="sr-only">Scroll right</span>
           </button>
         </div>

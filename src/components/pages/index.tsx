@@ -1,10 +1,10 @@
 import type { FC } from "react";
 
-import Sections from "../sections";
 import SocialShare from "@/components/layout/social-share";
 import CrumbTrail from "@/components/layout/crumb-trail";
 import { SanityPage } from "@/sanity/schema/presentation/pageType";
 import { SanitySocialShare } from "@/sanity/schema/presentation/layout/socialShare";
+import SectionParent from "../sections/section-parent";
 
 export interface PageProps {
   breadcrumbEnabled?: boolean;
@@ -19,7 +19,7 @@ const Page: FC<PageProps> = ({ breadcrumbEnabled, data, socialShare }) => {
     <main className="bg-grey">
       {breadcrumbEnabled && (
         <CrumbTrail
-          color="neutral"
+          colour="neutral"
           currentPage={data?.title ?? ""}
           variant="primary"
         />
@@ -27,7 +27,13 @@ const Page: FC<PageProps> = ({ breadcrumbEnabled, data, socialShare }) => {
       {socialShare && (
         <SocialShare rootUrl={rootUrl ?? ""} socialShare={socialShare} />
       )}
-      <Sections sections={data?.sections} />;
+      {data?._id && (
+        <SectionParent
+          documentId={data._id}
+          documentType="page"
+          sections={data.sections}
+        />
+      )}
     </main>
   );
 };

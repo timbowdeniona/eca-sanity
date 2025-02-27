@@ -91,6 +91,9 @@ export default defineType({
           type: "string",
         },
       ],
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: "headline",

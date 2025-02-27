@@ -9,26 +9,26 @@ import CloseIcon from "../icons/Close";
 type SearchInputSize = "small" | "medium";
 
 type Props = {
-  label?: string;
-  placeholder?: string;
-  name?: string;
-  value?: string;
   defaultValue?: string;
-  onChangeEvent?: (search: string) => void;
   hasClearIcon?: boolean;
+  label?: string;
+  name?: string;
+  onChangeEvent?: (search: string) => void;
+  placeholder?: string;
   size?: SearchInputSize;
+  value?: string;
 } & ComponentProps<"div">;
 
 export const SearchInput = ({
-  onChangeEvent,
   className,
   defaultValue,
-  name,
-  label,
-  value: outerValue,
-  placeholder,
   hasClearIcon,
+  label,
+  name,
+  onChangeEvent,
+  placeholder,
   size = "small",
+  value: outerValue,
   ...props
 }: Props) => {
   // Generate unique ID for the input element
@@ -75,10 +75,10 @@ export const SearchInput = ({
         </label>
         <input
           className={cn(
-            "flex flex-row pl-6 py-[10px] w-full rounded-full border-2 border-purple-80 group-hover:border-purple relative appearance-none outline-none",
+            "flex flex-row pl-6 py-[10px] w-full rounded-full border border-cyan-700 group-hover:border-cyan-700 relative appearance-none outline-none",
             size === "small" && "h-12",
             size === "medium" && "h-[60px]",
-            value && "border-purple",
+            value && "border-cyan-700",
             !value && size === "small" && "pr-[20px]",
             !value && size === "medium" && "pr-[30px]",
             value && size === "small" && "pr-[76px]",
@@ -112,15 +112,15 @@ export const SearchInput = ({
         )}
         <div
           className={cn(
-            "flex items-center absolute right-0 top-0 border-2 border-purple-80 group-hover:bg-purple group-hover:border-purple rounded-tr-full rounded-br-full",
+            "flex items-center absolute right-0 top-0 border border-cyan-700 group-hover:bg-cyan-700 group-hover:border-cyan-700 rounded-tr-full rounded-br-full",
             size === "small" && "w-12 h-12 pl-3 pr-[18px] py-[15px]",
             size === "medium" && "w-[60px] h-[60px] p-[18px]",
-            value && "border-purple",
+            value && "border-cyan-700",
           )}
         >
           <Search
             className={cn(
-              "fill-purple group-hover:fill-white",
+              "fill-cyan-700 group-hover:fill-white",
               size === "small" && "w-[18px] h-[18px]",
               size === "medium" && "w-6 h-6",
             )}

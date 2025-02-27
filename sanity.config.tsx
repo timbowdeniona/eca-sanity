@@ -11,6 +11,7 @@ import { presentationTool } from "sanity/presentation";
 import { resolve } from "@/sanity/tools/presentation/resolve";
 import { media } from "sanity-plugin-media";
 import { crossDatasetDuplicator } from "@sanity/cross-dataset-duplicator";
+import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import logo from "./public/studio_logo.svg";
 
 const StudioLogo = () => {
@@ -45,5 +46,6 @@ export default defineConfig({
     crossDatasetDuplicator({
       types: [],
     }),
+    unsplashImageAsset(),
   ],
 });

@@ -77,7 +77,7 @@ export const Footer = ({
 
   return (
     <footer className="flex flex-col">
-      <div className="bg-sky-800">
+      <div className="bg-cyan-800">
         <div className="wrapper px-5 pb-12 pt-6 md:py-12 lg:px-10 xl:px-0">
           <div className="flex flex-col justify-around gap-6 md:h-[400px] md:flex-row lg:max-h-[312px] lg:justify-between">
             <div className="relative mb-8 aspect-[80/60] h-24 w-auto shrink-0 md:mb-0">
@@ -101,7 +101,7 @@ export const Footer = ({
                   {list.map(item => (
                     <li className="lg:w-[270px] xl:w-[310px]" key={item.id}>
                       <Link
-                        className="hover:text-purple-80 hover:underline"
+                        className="hover:text-cyan-700 hover:underline"
                         href={item.link}
                         target={item.target}
                       >
@@ -117,7 +117,7 @@ export const Footer = ({
         </div>
       </div>
       {(children || disclaimer) && (
-        <div className="bg-sky-800 text-white">
+        <div className="bg-cyan-800 text-white">
           <div className="wrapper px-5 py-3 lg:px-10 xl:px-0">
             <div>{children || disclaimer}</div>
           </div>

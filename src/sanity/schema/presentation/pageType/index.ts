@@ -34,7 +34,6 @@ import type { SanityCards } from "@/sanity/schema/presentation/sectionType/secti
 import type { SanityCta } from "@/sanity/schema/presentation/sectionType/sections/cta";
 import type { SanitySpacer } from "@/sanity/schema/presentation/sectionType/sections/spacer";
 import type { SanityEmbed } from "@/sanity/schema/presentation/sectionType/sections/embed";
-import type { SanityVideoPlayer } from "@/sanity/schema/presentation/sectionType/sections/videoPlayer";
 
 import { sections } from "../sectionType";
 import { apiVersion } from "@/sanity/env";
@@ -69,7 +68,6 @@ export type SanitySection = { sectionMeta?: SanitySectionMeta } & (
   | SanityThreeColumn
   | SanityTwoColumn
   | SanityVideoCards
-  | SanityVideoPlayer
 );
 
 type SanityPageHeader = {

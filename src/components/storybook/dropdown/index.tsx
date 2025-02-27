@@ -20,19 +20,19 @@ export type OptionItem =
   | string;
 
 type Props = {
-  label?: string;
   ariaLabel?: string;
-  hint?: string;
-  hideLabel?: boolean;
-  options: Array<OptionItem>;
-  onChangeEvent?: (selected: string) => void;
-  value?: string | number;
-  placeholder?: string;
   disabled?: boolean;
-  labelClass?: string;
   error?: string;
-  togglerClass?: string;
+  hideLabel?: boolean;
+  hint?: string;
+  label?: string;
+  labelClass?: string;
+  onChangeEvent?: (selected: string) => void;
+  options: Array<OptionItem>;
+  placeholder?: string;
   required?: boolean;
+  togglerClass?: string;
+  value?: string | number;
 } & ComponentProps<"div">;
 
 export const Dropdown = forwardRef<HTMLDivElement, Props>(
@@ -40,18 +40,18 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
     {
       ariaLabel,
       className,
-      label,
-      hint,
-      options,
-      onChangeEvent,
-      value,
+      disabled,
       error,
       hideLabel,
-      placeholder,
-      disabled,
+      hint,
+      label,
       labelClass,
-      togglerClass,
+      onChangeEvent,
+      options,
+      placeholder,
       required = false,
+      togglerClass,
+      value,
       ...props
     },
     ref,
@@ -124,11 +124,11 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
             aria-haspopup="listbox"
             aria-label={ariaLabel || label}
             className={cn(
-              "w-full appearance-none truncate border border-purple-80 bg-white py-[10px] pl-4 pr-14 text-left hover:border-purple",
+              "w-full appearance-none truncate border border-cyan-700 bg-white py-[10px] pl-4 pr-14 text-left hover:border-cyan-700",
               "focus-visible:ring-2 focus-visible:ring-opacity-75",
               isOpen && "ring-2 ring-opacity-75",
               disabled &&
-                "bg-grey text-gray-500 cursor-not-allowed hover:border-purple-80",
+                "bg-grey text-gray-500 cursor-not-allowed hover:border-cyan-700",
               togglerClass,
             )}
             disabled={disabled}
@@ -143,14 +143,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
                 : selectedLabel?.label
               : placeholder || "Select an option"}
             {!disabled && (
-              <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 fill-purple" />
+              <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 fill-cyan-700" />
             )}
           </button>
 
           {isOpen && (
             <ul
               aria-labelledby={`${id}-label`}
-              className="scrollbar-purple-40 absolute z-50 mt-1 max-h-60 w-full overflow-auto border border-purple-80 bg-white"
+              className="scrollbar-cyan-700 absolute z-50 mt-1 max-h-60 w-full overflow-auto border border-cyan-700 bg-white"
               role="listbox"
             >
               {options.map((option, index) => {
@@ -162,8 +162,8 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
                   <li
                     aria-selected={value === optionValue}
                     className={cn(
-                      "cursor-pointer px-4 py-2 hover:bg-purple-80",
-                      value === optionValue && "bg-purple-20 text-white",
+                      "cursor-pointer px-4 py-2 hover:bg-cyan-700/20",
+                      value === optionValue && "bg-cyan-700 text-white",
                     )}
                     key={`${optionValue}-${index}`}
                     onClick={() => optionValue && handleSelect(optionValue)}

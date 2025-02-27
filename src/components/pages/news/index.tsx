@@ -30,7 +30,7 @@ const NewsListingPage: FC<NewsListingPageProps> = ({ data, socialShare }) => {
 
   return (
     <main className="bg-grey">
-      <CrumbTrail color="neutral" currentPage="News" variant="primary" />
+      <CrumbTrail colour="neutral" currentPage="News" variant="primary" />
       <SocialShare rootUrl={rootUrl ?? ""} socialShare={socialShare} />
       <ArticleList articles={articles} title="News" variant="primary" />
     </main>

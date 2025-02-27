@@ -4,6 +4,8 @@ import SocialShare from "@/components/layout/social-share";
 import CrumbTrail from "@/components/layout/crumb-trail";
 import { SanitySocialShare } from "@/sanity/schema/presentation/layout/socialShare";
 import { SanityNewsArticle } from "@/sanity/schema/information/newsArticle";
+import TitleBar from "@/components/storybook/title-bar";
+import NewsArticle from "@/components/news";
 
 export interface NewsPageProps {
   data: SanityNewsArticle | null;
@@ -16,11 +18,13 @@ const NewsPage: FC<NewsPageProps> = ({ data, socialShare }) => {
   return (
     <main className="bg-grey">
       <CrumbTrail
-        color="neutral"
+        colour="neutral"
         currentPage={data?.title ?? ""}
         variant="primary"
       />
       <SocialShare rootUrl={rootUrl ?? ""} socialShare={socialShare} />
+      <TitleBar color="cyan-800" title={data?.title ?? ""} variant="primary" />
+      <NewsArticle data={data} />
     </main>
   );
 };

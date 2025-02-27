@@ -13,15 +13,10 @@ type Props = {
   currentPage: string;
   items: Array<Breadcrumb>;
   variant: "primary" | "secondary";
-  colour?: "neutral" | "purple";
+  colour?: "neutral" | "white";
 } & ComponentProps<"div">;
 
-const CrumbTrail = ({
-  currentPage,
-  items,
-  variant,
-  colour = "purple",
-}: Props) => {
+const CrumbTrail = ({ currentPage, items, variant, colour }: Props) => {
   return (
     <div
       className={cn(
@@ -38,8 +33,8 @@ const CrumbTrail = ({
         <ol
           className={cn(
             "flex gap-4 shrink-0 items-center",
-            colour === "purple" && "text-purple fill-purple",
-            colour === "neutral" && "text-neutral fill-neutral",
+            colour === "white" && "text-white fill-white",
+            colour === "neutral" && "text-cyan-900 fill-cyan-900",
           )}
         >
           <li key="home">

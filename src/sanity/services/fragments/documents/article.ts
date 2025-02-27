@@ -23,6 +23,7 @@ export const newsArticleFragment = groq`
   body,
   openInNewTab,
   newsDate,
+  contactName,
 `;
 
 export const blogPostFragment = groq`

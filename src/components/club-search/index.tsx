@@ -9,6 +9,7 @@ import { SanityClub } from "@/sanity/schema/information/club";
 import Image from "next/image";
 import { Button } from "../storybook/button";
 import { ResetIcon } from "@sanity/icons";
+import { AlphabetTabs } from "../storybook/alphabet-tabs";
 
 interface ClubSearchProps {
   clubs: SanityClub[];
@@ -34,7 +35,6 @@ export const ClubSearch = ({
   const countries = Array.from(new Set(clubs.map(club => club.country))).sort();
 
   // Get active letters for alphabet tabs
-  const allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const activeLetters = Array.from(
     new Set(clubs.map(club => club.club.charAt(0).toUpperCase())),
   ).sort();
@@ -97,36 +97,6 @@ export const ClubSearch = ({
   // Handle member type selection
   const handleMemberTypeChange = (value: string) => {
     setMemberType(value);
-  };
-
-  const renderAlphabetTabs = () => {
-    return (
-      <div className="mb-6 flex flex-wrap gap-2">
-        {allLetters.map(letter => (
-          <button
-            className={cn(
-              "flex h-12 w-10 items-center justify-center border",
-              activeLetters.includes(letter)
-                ? selectedLetter === letter
-                  ? "bg-cyan-700 text-white border-cyan-700"
-                  : "bg-white text-cyan-900 border-cyan-700 hover:bg-cyan-700 hover:text-white"
-                : "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200",
-            )}
-            disabled={!activeLetters.includes(letter)}
-            key={letter}
-            onClick={() => {
-              if (selectedLetter === letter) {
-                setSelectedLetter("");
-              } else {
-                setSelectedLetter(letter);
-              }
-            }}
-          >
-            {letter}
-          </button>
-        ))}
-      </div>
-    );
   };
 
   // Handle page change
@@ -192,7 +162,11 @@ export const ClubSearch = ({
             </Button>
           </div>
 
-          {renderAlphabetTabs()}
+          <AlphabetTabs
+            activeLetters={activeLetters}
+            onLetterSelect={setSelectedLetter}
+            selectedLetter={selectedLetter}
+          />
 
           <div className="bg-white">
             <div className="grid grid-cols-4 bg-cyan-700 font-medium text-white">
