@@ -11,10 +11,12 @@ import defineArticleContentSourceField from "@/sanity/utils/defineArticleContent
 import { PATH_NEWS } from "@/configs/articles";
 import { SanityPageMeta } from "../presentation/pageType/pageMeta";
 import { SanityNewsCategory } from "./newsCategory";
+import { SanityClub } from "./club";
 
 export type SanityNewsArticle = SanityDocument & {
   title: string;
   articleImage?: SanityImage;
+  clubs: SanityClub[];
   badgeVariant: SanityAQAColour;
   badgeText: string;
   newsDate: Date;
@@ -65,6 +67,16 @@ export default defineType({
         defineArrayMember({
           type: "reference",
           to: [{ type: "newsCategory" }],
+        }),
+      ],
+    }),
+    defineField({
+      name: "clubs",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{ type: "club" }],
         }),
       ],
     }),
