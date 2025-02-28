@@ -59,7 +59,6 @@ const Sections: FC<Props> = ({
             className="section-wrapper"
             style={{
               position: "relative",
-              margin: "10px 0",
             }}
           >
             <Section
