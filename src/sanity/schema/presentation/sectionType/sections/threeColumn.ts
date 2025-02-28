@@ -12,9 +12,9 @@ import { backgroundColours } from "@/sanity/types";
 import { TfiLayoutColumn3 } from "react-icons/tfi";
 import ColoursInput from "@/sanity/tools/structure/components/inputs/colour";
 
-import { sections } from "../sections";
 import { SanityColumn } from "@/sanity/schema/types";
 import VerticalAlignmentInput from "@/sanity/tools/structure/components/inputs/vertical-alignment";
+import defineSectionsWithoutColumnsField from "../defineSectionsWithoutColumnsField";
 
 export type SanityThreeColumnGapSize = "none" | "small" | "medium" | "large";
 
@@ -111,19 +111,7 @@ export default defineType({
               "paddingHorizontal",
               "Padding - Horizontal (px)",
             ),
-            defineField({
-              name: "sections",
-              title: "Sections",
-              type: "array",
-              of: [
-                defineArrayMember({
-                  type: "reference",
-                  to: sections.map(section => ({
-                    type: section.name,
-                  })),
-                }),
-              ],
-            }),
+            defineSectionsWithoutColumnsField(),
           ],
         }),
       ],

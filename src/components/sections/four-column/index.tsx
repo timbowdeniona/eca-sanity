@@ -14,11 +14,11 @@ import type { SanitySection } from "@/sanity/schema/presentation/pageType";
 import Section from "../section";
 
 interface Props {
-  fourColumn: SanityFourColumn;
+  section: SanityFourColumn;
 }
 
-const FourColumnSection: FC<Props> = ({ fourColumn }) => {
-  const { columns, gapSize } = fourColumn;
+const FourColumnSection: FC<Props> = ({ section }) => {
+  const { columns, gapSize } = section;
 
   const processColumn = (data: SanitySection[]) => {
     return data
@@ -34,8 +34,8 @@ const FourColumnSection: FC<Props> = ({ fourColumn }) => {
         className={cn(
           "grid grid-cols-1 @cmd:grid-cols-12",
           getColumnGap(gapSize || 0),
-          getPaddingHorizontal(fourColumn.rowPaddingHorizontal),
-          getPaddingVertical(fourColumn.rowPaddingVertical),
+          getPaddingHorizontal(section.rowPaddingHorizontal),
+          getPaddingVertical(section.rowPaddingVertical),
         )}
       >
         {columns.map((column, index) => (

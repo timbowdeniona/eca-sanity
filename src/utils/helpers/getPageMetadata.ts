@@ -17,7 +17,7 @@ export const formatPageMetadata = (
   pageMeta?: SanityPageMeta | null,
   url?: string,
 ) => {
-  const title = pageMeta?.title ?? "AQA";
+  const title = pageMeta?.title ?? "IONA Sanity Demo";
   const description = pageMeta?.description ?? "";
   const keywords = pageMeta?.keywords ?? "";
   const canonicalUrl =
@@ -46,7 +46,7 @@ export const formatPageMetadata = (
           url: pageMeta?.image?.asset?.url ?? "",
           width: pageMeta?.image?.asset?.metadata?.dimensions?.width ?? 0,
           height: pageMeta?.image?.asset?.metadata?.dimensions?.height ?? 0,
-          alt: pageMeta?.title ?? "AQA",
+          alt: pageMeta?.title ?? "IONA Sanity Demo",
         },
       ],
       url,

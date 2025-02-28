@@ -4,7 +4,7 @@ import SocialShare from "@/components/layout/social-share";
 import CrumbTrail from "@/components/layout/crumb-trail";
 import { SanityPage } from "@/sanity/schema/presentation/pageType";
 import { SanitySocialShare } from "@/sanity/schema/presentation/layout/socialShare";
-import SectionParent from "../sections/section-parent";
+import Sections from "../sections";
 
 export interface PageProps {
   breadcrumbEnabled?: boolean;
@@ -14,6 +14,10 @@ export interface PageProps {
 
 const Page: FC<PageProps> = ({ breadcrumbEnabled, data, socialShare }) => {
   const rootUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <main className="bg-grey">
@@ -27,13 +31,11 @@ const Page: FC<PageProps> = ({ breadcrumbEnabled, data, socialShare }) => {
       {socialShare && (
         <SocialShare rootUrl={rootUrl ?? ""} socialShare={socialShare} />
       )}
-      {data?._id && (
-        <SectionParent
-          documentId={data._id}
-          documentType="page"
-          sections={data.sections}
-        />
-      )}
+      <Sections
+        documentId={data._id}
+        documentType="page"
+        sections={data.sections}
+      />
     </main>
   );
 };

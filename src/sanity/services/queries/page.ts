@@ -13,7 +13,7 @@ export const PAGE_BY_SLUG_QUERY = groq`
     title,
     type,
     slug,
-    sections[]-> {
+    sections[] {
       ${sectionsFragment}
     },
     header {
@@ -38,7 +38,7 @@ export const SUBPAGE_BY_SLUG_QUERY = groq`
     title,
     type,
     slug,
-    sections[]-> {
+    sections[] {
       ${sectionsFragment}
     },
     header {

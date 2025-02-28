@@ -5,8 +5,7 @@ import { heroFragment } from "./hero";
 export const personalisedFragment = groq`
   variations[] {
     roles[],
-    sections[]-> {
-      _id,
+    sections[] {
       _type,
       _type == 'hero' => {
         ${heroFragment}

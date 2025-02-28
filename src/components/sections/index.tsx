@@ -1,80 +1,103 @@
 "use client";
 
 import type { FC, ReactNode } from "react";
-import { stegaClean } from "@sanity/client/stega";
-
 import type { SanitySection } from "@/sanity/schema/presentation/pageType";
+import type { SanityDocument } from "@sanity/client";
+
+import { createDataAttribute, useOptimistic } from "@sanity/visual-editing";
 import { cn } from "@/utils/helpers/cn";
 import Section from "./section";
-import { createDataAttribute } from "@sanity/visual-editing";
 import { apiVersion, dataset, projectId } from "@/sanity/env";
 
-export type Props = {
+export type SectionsProps = {
   children?: (section: SanitySection) => ReactNode;
+  documentId: string;
+  documentType: string;
   sections?: SanitySection[];
-  documentId?: string;
-  documentType?: string;
 };
 
-const Sections: FC<Props> = ({
+const createDataAttributeConfig = {
+  apiVersion,
+  baseUrl: "/studio",
+  dataset,
+  projectId,
+};
+
+const Sections: FC<SectionsProps> = ({
   children,
-  sections,
   documentId,
   documentType,
+  sections: initialSections,
 }) => {
-  const config = {
-    projectId,
-    dataset,
-    apiVersion,
-    baseUrl: "/studio",
-  };
+  // Use optimistic updates for real-time editing
+  const sections = useOptimistic<SanitySection[] | undefined, SanityDocument>(
+    initialSections,
+    (currentSections, action) => {
+      if (action.id === documentId && action.document.sections) {
+        return action.document.sections.map(
+          (section: SanitySection) =>
+            currentSections?.find(
+              (s: SanitySection) =>
+                s._key === section._key || s._id === section._id,
+            ) || section,
+        );
+      }
+      return currentSections;
+    },
+  );
 
-  // Ensure sections is always an array
-  const sectionsArray = Array.isArray(sections) ? sections : [];
-
-  // Apply stegaClean to all sections to prevent conflicts
-  const cleanSections = stegaClean(sectionsArray);
+  if (!sections?.length) {
+    return null;
+  }
 
   return (
-    <div className="sections-container">
-      {cleanSections.map((section, index) => {
-        const pathNotation = section._key
-          ? `sections[_key=="${section._key}"]`
-          : `sections[${index}]`;
-
-        const sectionDataAttribute =
-          documentId && documentType
-            ? createDataAttribute({
-                ...config,
+    <div
+      data-sanity={createDataAttribute({
+        ...createDataAttributeConfig,
+        id: documentId,
+        type: documentType,
+        path: "sections",
+      }).toString()}
+    >
+      <div className="sections-container">
+        {sections.map(section => {
+          const DragHandle = ({ children }: { children: React.ReactNode }) => (
+            <div
+              data-sanity={createDataAttribute({
+                ...createDataAttributeConfig,
                 id: documentId,
                 type: documentType,
-                path: pathNotation,
-              }).toString()
-            : undefined;
-
-        return (
-          <div
-            key={section?._key || section?._id || index}
-            data-sanity={sectionDataAttribute}
-            className="section-wrapper"
-            style={{
-              position: "relative",
-            }}
-          >
-            <Section
-              className={cn(
-                index === 0 && "is-first",
-                index === (cleanSections?.length ?? 0) - 1 && "is-last",
-                index % 2 === 0 ? "is-odd" : "is-even",
-              )}
-              id={section?.sectionMeta?.id}
-              section={sectionsArray[index]}
+                path: `sections[_key=="${section._key}"]`,
+              }).toString()}
+              className="section-wrapper"
+              style={{
+                position: "relative",
+              }}
             >
               {children}
-            </Section>
-          </div>
-        );
-      })}
+            </div>
+          );
+
+          return (
+            <DragHandle key={section._key}>
+              <Section
+                className={cn(
+                  sections.indexOf(section) === 0 && "is-first",
+                  sections.indexOf(section) === (sections?.length ?? 0) - 1 &&
+                    "is-last",
+                  sections.indexOf(section) % 2 === 0 ? "is-odd" : "is-even",
+                )}
+                documentId={documentId}
+                documentType={documentType}
+                id={section?.sectionMeta?.id}
+                section={section}
+              >
+                {children}
+              </Section>
+            </DragHandle>
+          );
+        })}
+      </div>
     </div>
   );
 };

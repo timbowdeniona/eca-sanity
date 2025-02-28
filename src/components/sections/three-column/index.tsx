@@ -18,11 +18,11 @@ import type { SanitySection } from "@/sanity/schema/presentation/pageType";
 import Section from "../section";
 
 interface Props {
-  threeColumn: SanityThreeColumn;
+  section: SanityThreeColumn;
 }
 
-const ThreeColumnSection: FC<Props> = ({ threeColumn }) => {
-  const { variant, columns, gapSize } = threeColumn;
+const ThreeColumnSection: FC<Props> = ({ section }) => {
+  const { variant, columns, gapSize } = section;
 
   const getColumnSpans = (variant: SanityThreeColumnVariant): number[] => {
     switch (variant) {
@@ -55,8 +55,8 @@ const ThreeColumnSection: FC<Props> = ({ threeColumn }) => {
         className={cn(
           "grid grid-cols-1 @4xl:grid-cols-12",
           getColumnGap(gapSize || 0),
-          getPaddingHorizontal(threeColumn.rowPaddingHorizontal),
-          getPaddingVertical(threeColumn.rowPaddingVertical),
+          getPaddingHorizontal(section.rowPaddingHorizontal),
+          getPaddingVertical(section.rowPaddingVertical),
         )}
       >
         {columns.map((column, index) => (

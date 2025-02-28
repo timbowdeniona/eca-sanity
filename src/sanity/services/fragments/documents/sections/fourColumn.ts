@@ -12,7 +12,7 @@ export const fourColumnFragment = groq`
     verticalAlignment,
     paddingVertical,
     paddingHorizontal,
-    sections[]-> {
+    sections[] {
       ${sectionsFragment}
     }
   },

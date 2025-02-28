@@ -37,6 +37,7 @@ import type { SanityEmbed } from "@/sanity/schema/presentation/sectionType/secti
 
 import { sections } from "../sectionType";
 import { apiVersion } from "@/sanity/env";
+import defineSectionsField from "../sectionType/defineSectionsField";
 
 export type SanityPageType = "parent" | "child" | "static" | "error";
 
@@ -279,19 +280,7 @@ export const pageType = defineType({
         }),
       ],
     }),
-    defineField({
-      name: "sections",
-      title: "Sections",
-      type: "array",
-      of: [
-        defineArrayMember({
-          type: "reference",
-          to: sections.map(section => ({
-            type: section.name,
-          })),
-        }),
-      ],
-    }),
+    defineSectionsField(),
     defineField({
       name: "subpages",
       title: "Subpages",

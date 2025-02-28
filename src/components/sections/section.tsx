@@ -34,6 +34,8 @@ const sectionComponents: Record<string, any> = {
 export type SectionProps = {
   children?: (section: SanitySection) => ReactNode;
   className?: string;
+  documentId?: string;
+  documentType?: string;
   id?: string;
   section: SanitySection;
 };
@@ -41,6 +43,8 @@ export type SectionProps = {
 const Section: FC<SectionProps> = ({
   children,
   className,
+  documentId,
+  documentType,
   id,
   section,
   ...props
@@ -57,11 +61,19 @@ const Section: FC<SectionProps> = ({
   return (
     <section
       className={cn("section", `section-${section?._type}`, className)}
-      data-section-type={section?._type}
+      data-sanity={section?._type}
       id={id}
       {...props}
     >
-      {children ? children(section) : <Component section={section} />}
+      {children ? (
+        children(section)
+      ) : (
+        <Component
+          section={section}
+          documentId={documentId}
+          documentType={documentType}
+        />
+      )}
     </section>
   );
 };

@@ -13,7 +13,7 @@ export const threeColumnFragment = groq`
     verticalAlignment,
     paddingVertical,
     paddingHorizontal,
-    sections[]-> {
+    sections[] {
       ${sectionsFragment}
     }
   },

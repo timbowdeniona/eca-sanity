@@ -31,7 +31,7 @@ import { videoCardsFragment } from "./videoCards";
 import { videoPlayerFragment } from "./videoPlayer";
 
 export const sectionsFragment = groq`
-  _id,
+  _key,
   _type,
   sectionMeta {
     id

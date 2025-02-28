@@ -7,7 +7,7 @@ import {
 } from "@/utils/helpers/getTailwindClasses";
 
 import type { SanityImageBlock } from "@/sanity/schema/presentation/sectionType/sections/imageBlock";
-import { urlForImage } from "@/sanity/lib/image";
+import { makeImageUrl } from "@/sanity/lib/image";
 
 type Props = {
   section: SanityImageBlock;
@@ -26,7 +26,7 @@ const ImageBlockSection: FC<Props> = ({ section }) => {
     widthPixels,
   } = section;
 
-  const imageUrl = urlForImage(image.asset) ?? "";
+  const imageUrl = makeImageUrl(image?.asset) ?? "";
 
   const getWidthStyle = () => {
     if (alignment === "full") {
