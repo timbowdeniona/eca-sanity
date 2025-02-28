@@ -59,7 +59,7 @@ const Sections: FC<SectionsProps> = ({
         path: "sections",
       }).toString()}
     >
-      <div className="sections-container">
+      <div>
         {sections.map(section => {
           const DragHandle = ({ children }: { children: React.ReactNode }) => (
             <div
@@ -69,7 +69,6 @@ const Sections: FC<SectionsProps> = ({
                 type: documentType,
                 path: `sections[_key=="${section._key}"]`,
               }).toString()}
-              className="section-wrapper"
               style={{
                 position: "relative",
               }}

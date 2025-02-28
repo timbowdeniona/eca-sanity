@@ -24,6 +24,7 @@ export const newsArticleFragment = groq`
   openInNewTab,
   newsDate,
   contactName,
+  socialPost,
 `;
 
 export const blogPostFragment = groq`

@@ -6,7 +6,7 @@ import QuestionMark from "../storybook/icons/QuestionMark";
 const NotFoundComponent = () => {
   return (
     <div className="flex justify-center bg-grey py-12 @container lg:py-32">
-      <div className="wrapper h-full min-h-[35vh] w-full max-w-[1440px]">
+      <div className="wrapper size-full min-h-[35vh] max-w-[1440px]">
         <div className="flex flex-col items-center gap-16 @clg:flex-row-reverse @clg:justify-end">
           <div className="flex size-28 items-center justify-center rounded-full border-2 border-purple-80">
             <QuestionMark className="size-28 p-4 [&_path]:fill-red" />

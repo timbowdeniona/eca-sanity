@@ -1,6 +1,6 @@
 import {
-  defineLocations,
   defineDocuments,
+  defineLocations,
   PresentationPluginOptions,
 } from "sanity/presentation";
 
@@ -12,7 +12,10 @@ export const resolve: PresentationPluginOptions["resolve"] = {
         pathname: "slug.current",
       },
       resolve(doc) {
-        if (!doc?.pathname) return null;
+        if (!doc?.pathname) {
+          return null;
+        }
+
         return {
           locations: [
             {
@@ -27,13 +30,13 @@ export const resolve: PresentationPluginOptions["resolve"] = {
   mainDocuments: defineDocuments([
     {
       route: "/",
-      filter: `_type == 'page' && slug.current == '/'`,
+      filter: "_type == 'page' && slug.current == '/'",
     },
     {
       route: "/:slug",
       resolve(ctx) {
         return {
-          filter: `_type == 'page' && slug.current == $url`,
+          filter: "_type == 'page' && slug.current == $url",
           params: { url: ctx.params.slug },
         };
       },
@@ -42,7 +45,8 @@ export const resolve: PresentationPluginOptions["resolve"] = {
       route: "/:slug/:subpage",
       resolve(ctx) {
         return {
-          filter: `_type == 'page' && _id in *[_type == 'page' && slug.current == $pageSlug].subpages[]._ref && slug.current match ($subpageSlug + "$")`,
+          filter:
+            "_type == 'page' && _id in *[_type == 'page' && slug.current == $pageSlug].subpages[]._ref && slug.current match ($subpageSlug + '$')",
           params: {
             pageSlug: ctx.params.slug,
             subpageSlug: ctx.params.subpage,

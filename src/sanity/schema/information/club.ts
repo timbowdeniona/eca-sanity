@@ -1,5 +1,5 @@
 import type { SanityDocument } from "next-sanity";
-import { defineField, defineType, Slug } from "sanity";
+import { defineField, defineType } from "sanity";
 import { SanityImage } from "@/sanity/schema/types";
 import { Url } from "url";
 

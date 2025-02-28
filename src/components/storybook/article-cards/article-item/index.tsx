@@ -14,7 +14,7 @@ import createPreviewThumbnail from "@/sanity/utils/createPreviewThumbnail";
 export type ArticleCardContentType = "aqaResource" | "newsArticle" | "blogPost";
 
 export type ArticleItemProps = {
-  badgeVariant?: "purple" | "grey" | "green" | "red";
+  badgeVariant?: "cyan-800" | "grey" | "green" | "red";
   badge?: string;
   date?: string;
   image?: string;

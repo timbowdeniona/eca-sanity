@@ -35,7 +35,6 @@ import type { SanityCta } from "@/sanity/schema/presentation/sectionType/section
 import type { SanitySpacer } from "@/sanity/schema/presentation/sectionType/sections/spacer";
 import type { SanityEmbed } from "@/sanity/schema/presentation/sectionType/sections/embed";
 
-import { sections } from "../sectionType";
 import { apiVersion } from "@/sanity/env";
 import defineSectionsField from "../sectionType/defineSectionsField";
 

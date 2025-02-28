@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
@@ -27,7 +28,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={openSans.variable}>
-        <Header />
+        <Suspense
+          fallback={<div className="h-[72px] bg-cyan-600 md:h-28"></div>}
+        >
+          <Header />
+        </Suspense>
         <main>{children}</main>
         <SanityLive />
         {(await draftMode()).isEnabled && (

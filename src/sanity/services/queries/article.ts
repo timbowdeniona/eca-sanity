@@ -18,6 +18,12 @@ export const getNewsArticlesQuery = groq`
   }
 `;
 
+export const getNewsArticleByIdQuery = groq`
+  *[_type == "newsArticle" && _id == $id][0] {
+    ${newsArticleFragment}
+  }
+`;
+
 export const getBlogArticleBySlugQuery = groq`
   *[_type == "blogPost" && slug.current == $slug][0] {
     ${blogPostFragment}

@@ -7,7 +7,6 @@ import Image from "next/image";
 
 import { cn } from "@/utils/helpers/cn";
 import { Button } from "../button";
-import { toVideoEmbedUrl } from "@/utils/helpers/toVideoEmbedUrl";
 
 type MastheadProps = {
   children?: ReactNode;
@@ -46,7 +45,6 @@ export const Masthead = ({
   ctaTarget,
   alignment = "top",
   mediaType = "image",
-  videoUrl,
 }: MastheadProps) => {
   const bgColorClass =
     variant === "primary"

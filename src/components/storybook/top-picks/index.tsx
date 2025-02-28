@@ -113,9 +113,15 @@ export const TopPicks = ({
           {
             <Button
               className={cn("left-[-10px]", navigationButtonClass)}
-              color="custom"
-              customColor={secondaryColor}
-              customHoverColor={tertiaryColor}
+              {...(secondaryColor && tertiaryColor
+                ? {
+                    color: "custom",
+                    customColor: secondaryColor,
+                    customHoverColor: tertiaryColor,
+                  }
+                : {
+                    color: "purple-40",
+                  })}
               onClick={() => swiper?.slidePrev()}
               type="button"
               variant="primary"
@@ -127,9 +133,15 @@ export const TopPicks = ({
           {
             <Button
               className={cn("right-[-10px]", navigationButtonClass)}
-              color="custom"
-              customColor={secondaryColor}
-              customHoverColor={tertiaryColor}
+              {...(secondaryColor && tertiaryColor
+                ? {
+                    color: "custom",
+                    customColor: secondaryColor,
+                    customHoverColor: tertiaryColor,
+                  }
+                : {
+                    color: "purple-40",
+                  })}
               onClick={() => swiper?.slideNext()}
               type="button"
               variant="primary"

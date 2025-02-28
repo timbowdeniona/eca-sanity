@@ -6,6 +6,7 @@ import {
   getBlogArticleBySlugQuery,
   getBlogArticleWithMetaBySlugQuery,
   getBlogPostsForSitemapQuery,
+  getNewsArticleByIdQuery,
   getNewsArticleBySlugQuery,
   getNewsArticlesForSitemapQuery,
   getNewsArticlesQuery,
@@ -45,6 +46,20 @@ export const getArticle = async (
 export const getNewsArticles = async (): Promise<SanityNewsArticle[]> => {
   const { data } = await sanityFetch({
     query: getNewsArticlesQuery,
+  });
+
+  return data;
+};
+
+/**
+ * Get an article by id
+ */
+export const getNewsArticleById = async (
+  id: string,
+): Promise<SanityNewsArticle | null> => {
+  const { data } = await sanityFetch({
+    query: getNewsArticleByIdQuery,
+    params: { id },
   });
 
   return data;

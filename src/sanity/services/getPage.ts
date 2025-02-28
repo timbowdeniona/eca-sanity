@@ -6,8 +6,8 @@ import { sanityFetch } from "@/sanity/lib/live";
 
 import {
   PAGE_BY_SLUG_QUERY,
-  SUBPAGE_BY_SLUG_QUERY,
   PAGE_WITH_META_QUERY,
+  SUBPAGE_BY_SLUG_QUERY,
   SUBPAGE_WITH_META_QUERY,
 } from "./queries/page";
 

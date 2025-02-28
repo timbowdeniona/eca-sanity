@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SearchInput } from "@/components/storybook/search-input";
 import { Dropdown } from "@/components/storybook/dropdown";
 import { Pagination } from "@/components/storybook/pagination";
@@ -122,7 +122,7 @@ export const ClubSearch = ({
           </p>
 
           <div className="mb-6 flex flex-col gap-6 md:flex-row md:items-end">
-            <div className="flex-grow">
+            <div className="grow">
               <SearchInput
                 hasClearIcon
                 onChangeEvent={handleSearch}
@@ -186,10 +186,10 @@ export const ClubSearch = ({
               >
                 <div className="flex items-center p-4">
                   {club.logo && (
-                    <div className="mr-3 h-10 w-10 flex-shrink-0">
+                    <div className="mr-3 size-10 shrink-0">
                       <Image
                         alt={`${club.club} logo`}
-                        className="h-full w-full object-contain"
+                        className="size-full object-contain"
                         height={40}
                         src={club?.logo?.asset?.url ?? ""}
                         width={40}
@@ -206,7 +206,7 @@ export const ClubSearch = ({
                 </div>
                 <div className="flex items-center p-4">
                   <a
-                    className="text-blue-600 hover:underline"
+                    className="text-cyan-700 hover:underline"
                     href={`https://${club.website.toString()}`}
                     rel="noopener noreferrer"
                     target="_blank"

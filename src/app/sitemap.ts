@@ -23,7 +23,7 @@ const getPriority = (page: SanityPage) => {
 
 const getBlogPosts = async () => {
   const blogPosts = await getBlogPostsForSitemap();
-  return (blogPosts.data ?? [])
+  return (blogPosts ?? [])
     .map(blogPost => ({
       url: `blog/${trim(blogPost.slug?.current ?? "", "/")}`,
       lastModified: blogPost._updatedAt,
@@ -35,7 +35,7 @@ const getBlogPosts = async () => {
 
 const getNewsArticles = async () => {
   const newsArticles = await getNewsArticlesForSitemap();
-  return (newsArticles.data ?? [])
+  return (newsArticles ?? [])
     .map(newsArticle => ({
       url: `news/${trim(newsArticle.slug?.current ?? "", "/")}`,
       lastModified: newsArticle._updatedAt,
@@ -47,7 +47,7 @@ const getNewsArticles = async () => {
 
 const getPages = async () => {
   const pages = await getPagesForSitemap();
-  return (pages.data ?? [])
+  return (pages ?? [])
     .filter(page => {
       if (
         // Skip subpages that do not have at least one parent

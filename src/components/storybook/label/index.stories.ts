@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const Purple: Story = {
   args: {
     children: "Label",
-    variant: "purple",
+    variant: "cyan-800",
   },
 };
 

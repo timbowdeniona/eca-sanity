@@ -7,6 +7,7 @@ import { SanitySocialShare } from "@/sanity/schema/presentation/layout/socialSha
 import { SanityNewsArticle } from "@/sanity/schema/information/newsArticle";
 import { ArticleList } from "@/components/storybook/article-list";
 import { makeImageUrl } from "@/sanity/lib/image";
+import { PATH_NEWS } from "@/configs/articles";
 
 export interface NewsListingPageProps {
   data: SanityNewsArticle[] | null;
@@ -21,7 +22,7 @@ const NewsListingPage: FC<NewsListingPageProps> = ({ data, socialShare }) => {
       id: article._id,
       headline: article.title,
       summary: article.summary,
-      link: article?.slug?.current ?? "",
+      link: `${PATH_NEWS}/${article?.slug?.current}`,
       image: makeImageUrl(article.articleImage),
       date: article.date,
       description: article.description,

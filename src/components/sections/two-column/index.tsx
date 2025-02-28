@@ -13,7 +13,7 @@ import { stegaClean } from "@sanity/client/stega";
 import { createDataAttribute } from "@sanity/visual-editing";
 import Section from "../section";
 import { apiVersion, dataset, projectId } from "@/sanity/env";
-
+import type { SanitySection } from "@/sanity/schema/presentation/pageType";
 interface Props {
   section: SanityTwoColumn;
   documentId?: string;
@@ -37,13 +37,13 @@ const TwoColumnSection: FC<Props> = ({ section, documentId, documentType }) => {
     projectId,
   };
 
-  const processColumn = (data: any = [], columnIndex: number) => {
+  const processColumn = (data: SanitySection[] = [], columnIndex: number) => {
     if (!data) {
       return null;
     }
 
     if (!Array.isArray(data)) {
-      if (data && typeof data === "object" && data._type) {
+      if (data && typeof data === "object" && "sections" in data) {
         // Apply stegaClean to individual section
         const cleanedSection = stegaClean(data);
         return <Section section={cleanedSection} />;
@@ -55,7 +55,7 @@ const TwoColumnSection: FC<Props> = ({ section, documentId, documentType }) => {
       return null;
     }
 
-    return data.map((sectionItem: any, key: number) => {
+    return data.map((sectionItem: SanitySection, key: number) => {
       if (!sectionItem) {
         return null;
       }
@@ -84,7 +84,7 @@ const TwoColumnSection: FC<Props> = ({ section, documentId, documentType }) => {
         <div
           key={cleanedSection?._key || key}
           {...dataAttributes}
-          className="section-item relative"
+          className="relative"
         >
           <Section key={key} section={cleanedSection} />
         </div>
@@ -158,9 +158,7 @@ const TwoColumnSection: FC<Props> = ({ section, documentId, documentType }) => {
           )}
           {...getColumnAttributes(0)}
         >
-          <div className="column-content">
-            {processColumn(firstColumn?.sections, 0)}
-          </div>
+          <div>{processColumn(firstColumn?.sections, 0)}</div>
         </div>
         <div
           className={cn(
@@ -173,9 +171,7 @@ const TwoColumnSection: FC<Props> = ({ section, documentId, documentType }) => {
           )}
           {...getColumnAttributes(1)}
         >
-          <div className="column-content">
-            {processColumn(secondColumn?.sections, 1)}
-          </div>
+          <div>{processColumn(secondColumn?.sections, 1)}</div>
         </div>
       </div>
     </div>

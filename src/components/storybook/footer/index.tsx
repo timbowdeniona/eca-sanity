@@ -29,7 +29,6 @@ type Props = {
 
 export const Footer = ({
   image,
-  imageLink,
   imageAlt,
   socialLinks,
   linkList,

@@ -170,7 +170,7 @@ export const ArticleCards = ({
             onClick={() => swiper?.slidePrev()}
             type="button"
             variant="primary"
-            {...(secondaryColor
+            {...(secondaryColor && primaryColor
               ? {
                   color: "custom",
                   customColor: secondaryColor,
@@ -191,7 +191,7 @@ export const ArticleCards = ({
             onClick={() => swiper?.slideNext()}
             type="button"
             variant="primary"
-            {...(secondaryColor
+            {...(secondaryColor && primaryColor
               ? {
                   color: "custom",
                   customColor: secondaryColor,
@@ -221,7 +221,7 @@ export const ArticleCards = ({
               <SwiperSlide className="!h-auto" key={`${item.id}-${index}`}>
                 <ArticleItem
                   badge={item.badge}
-                  badgeVariant="purple"
+                  badgeVariant="cyan-800"
                   date={item.date}
                   image={item.image}
                   imageAlt={item.imageAlt}

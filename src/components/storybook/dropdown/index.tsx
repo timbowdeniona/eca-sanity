@@ -150,7 +150,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
           {isOpen && (
             <ul
               aria-labelledby={`${id}-label`}
-              className="scrollbar-cyan-700 absolute z-50 mt-1 max-h-60 w-full overflow-auto border border-cyan-700 bg-white"
+              className="absolute z-50 mt-1 max-h-60 w-full overflow-auto border border-cyan-700 bg-white"
               role="listbox"
             >
               {options.map((option, index) => {

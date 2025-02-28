@@ -10,11 +10,11 @@ import { getClubs } from "@/sanity/services/getClub";
 export const revalidate = 60;
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  return getPageMetadata(`eca-members`);
+  return getPageMetadata("eca-members");
 };
 
 export default async function EcaMembersRoute() {
-  const data = await getPageBySlug(`eca-members`);
+  const data = await getPageBySlug("eca-members");
   const clubs = await getClubs();
   const socialShare = await getSocialShare();
 

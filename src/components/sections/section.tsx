@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import type { SanitySection } from "@/sanity/schema/presentation/pageType";
 import { cn } from "@/utils/helpers/cn";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sectionComponents: Record<string, any> = {
   accordion: dynamic(() => import("./accordion")),
   articleCards: dynamic(() => import("./article-cards")),
@@ -69,9 +70,9 @@ const Section: FC<SectionProps> = ({
         children(section)
       ) : (
         <Component
-          section={section}
           documentId={documentId}
           documentType={documentType}
+          section={section}
         />
       )}
     </section>

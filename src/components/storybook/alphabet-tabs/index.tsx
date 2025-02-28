@@ -2,7 +2,6 @@
 
 import { ComponentProps, useEffect, useRef, useState } from "react";
 
-import Link from "@/components/base/link";
 import ChevronRight from "../icons/ChevronRight";
 import ChevronLeft from "../icons/ChevronLeft";
 import { cn } from "@/utils/helpers/cn";

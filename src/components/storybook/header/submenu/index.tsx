@@ -1,20 +1,26 @@
-'use client';
+"use client";
 
-import type { ComponentProps } from 'react';
+import type { ComponentProps } from "react";
 
-import Link from '@/components/base/link';
-import { cn } from '@/utils/helpers/cn';
-import ChevronLeft from '../../icons/ChevronLeft';
-import { LinkItem } from '..';
+import Link from "@/components/base/link";
+import { cn } from "@/utils/helpers/cn";
+import ChevronLeft from "../../icons/ChevronLeft";
+import { LinkItem } from "..";
 
 type Props = {
   className: string;
   links?: Array<LinkItem>;
   onClose: () => void;
   onCloseMenu?: () => void;
-} & ComponentProps<'div'>;
+} & ComponentProps<"div">;
 
-export const Submenu = ({ onClose, className, links, onCloseMenu, ...props }: Props) => {
+export const Submenu = ({
+  onClose,
+  className,
+  links,
+  onCloseMenu,
+  ...props
+}: Props) => {
   // Hide Submenu if there's no links
   if (!links || links?.length == 0) {
     return null;
@@ -23,7 +29,7 @@ export const Submenu = ({ onClose, className, links, onCloseMenu, ...props }: Pr
   return (
     <div
       className={cn(
-        'block md:absolute w-full h-screen md:h-max md:w-max inset-0 md:right-0 bg-purple-40 md:bg-white text-neutral z-[60]',
+        "block md:absolute w-full h-screen md:h-max md:w-max inset-0 md:right-0 bg-purple-40 md:bg-white text-neutral z-[60]",
         className,
       )}
       {...props}
@@ -41,9 +47,12 @@ export const Submenu = ({ onClose, className, links, onCloseMenu, ...props }: Pr
           </div>
           {links &&
             links?.length > 0 &&
-            links.map((item) => (
+            links.map(item => (
               <div
-                className={cn('flex flex-col gap-1 md:gap-4', !item.text && 'md:pt-10')}
+                className={cn(
+                  "flex flex-col gap-1 md:gap-4",
+                  !item.text && "md:pt-10",
+                )}
                 key={item.id}
               >
                 {item.text && item.links ? (
@@ -57,14 +66,18 @@ export const Submenu = ({ onClose, className, links, onCloseMenu, ...props }: Pr
                       className="flex flex-col gap-1 md:gap-3"
                       role="menu"
                     >
-                      {item.links?.map((link) => (
-                        <li className="flex flex-col" key={link.id} role="menuitem">
+                      {item.links?.map(link => (
+                        <li
+                          className="flex flex-col"
+                          key={link.id}
+                          role="menuitem"
+                        >
                           <Link
                             className="h-12 bg-white px-6 py-3 font-semibold text-purple hover:bg-purple hover:text-white md:h-auto md:border md:border-purple md:bg-none md:px-4 md:py-2 md:hover:bg-purple-40"
-                            href={link.link || '/'}
+                            href={link.link || "/"}
                             onClick={onCloseMenu}
                           >
-                            {link.type === 'emphasizedLink' ? (
+                            {link.type === "emphasizedLink" ? (
                               <p>
                                 <b>{link.text}</b>
                               </p>
@@ -80,7 +93,7 @@ export const Submenu = ({ onClose, className, links, onCloseMenu, ...props }: Pr
                   // Render as a direct link
                   <Link
                     className="h-12 bg-white px-6 py-3 font-semibold text-purple hover:bg-purple hover:text-white md:h-auto md:border md:border-purple md:bg-none md:px-4 md:py-2 even:md:border-t-0 md:hover:bg-purple-40"
-                    href={item.link || '/'}
+                    href={item.link || "/"}
                     onClick={onCloseMenu}
                   >
                     <p>{item.text}</p>
