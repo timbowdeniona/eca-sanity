@@ -10,6 +10,7 @@ import {
   getNewsArticleBySlugQuery,
   getNewsArticlesForSitemapQuery,
   getNewsArticlesQuery,
+  getNewsArticlesByClubQuery,
   getNewsArticleWithMetaBySlugQuery,
 } from "@/sanity/services/queries/article";
 import {
@@ -47,7 +48,21 @@ export const getNewsArticles = async (): Promise<SanityNewsArticle[]> => {
   const { data } = await sanityFetch({
     query: getNewsArticlesQuery,
   });
+  console.log(data)
+  return data;
+};
 
+/**
+ * Get all news articles
+ */
+export const getNewsArticlesByClub = async (
+  id: string,
+): Promise<SanityNewsArticle[]> => {
+  const { data } = await sanityFetch({
+    query: getNewsArticlesByClubQuery,
+    params: { id },
+  });
+  console.log(data)
   return data;
 };
 

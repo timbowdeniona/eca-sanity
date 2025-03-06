@@ -25,6 +25,7 @@ export type ArticleCardsItem = {
   image?: string;
   imageAlt?: string;
   isResource?: boolean;
+  logos: string[];
   metadata?: string;
   summary: string;
   link: string;
@@ -223,6 +224,7 @@ export const ArticleCards = ({
                   badge={item.badge}
                   badgeVariant="cyan-800"
                   date={item.date}
+                  logos={item.logos || []}
                   image={item.image}
                   imageAlt={item.imageAlt}
                   link={item.link}

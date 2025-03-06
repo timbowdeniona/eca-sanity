@@ -19,6 +19,7 @@ export type SanityNewsArticle = SanityDocument & {
   clubs: SanityClub[];
   badgeVariant: SanityAQAColour;
   badgeText: string;
+  logos: string[];
   newsDate: Date;
   newsEndDate?: Date;
   showContactDetails: boolean;

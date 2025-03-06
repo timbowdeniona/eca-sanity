@@ -9,6 +9,7 @@ type ArticleItemProps = {
   badge?: string;
   image?: string;
   imageAlt?: string;
+  logos: string[];
   highlightedText: string;
   headline: string;
   summary: string;
@@ -20,6 +21,7 @@ export const ArticleItem = ({
   image,
   imageAlt,
   badge,
+  logos,
   highlightedText,
   headline,
   summary,
@@ -58,6 +60,18 @@ export const ArticleItem = ({
         <p className="text-white">{highlightedText}</p>
         <h3 className="text-white group-hover:underline">{headline}</h3>
         <p className="line-clamp-3 text-white">{summary}</p>
+        <div className="flex space-x-4">
+          {logos.map((logo, index) => (
+          <Image
+            key={index}
+            alt={imageAlt || ""}
+            className="object-cover"
+            height={32}
+            objectFit="cover"
+            src={logo}
+            width={40}
+          />))}
+        </div>
       </div>
     </article>
   );

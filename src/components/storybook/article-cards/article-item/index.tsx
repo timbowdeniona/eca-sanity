@@ -21,6 +21,7 @@ export type ArticleItemProps = {
   imageAlt?: string;
   link: string;
   linkTarget?: HTMLAttributeAnchorTarget;
+  logos: string[];
   metadata?: string;
   summary: string;
   triangleColor?: CSSProperties["color"];
@@ -35,6 +36,7 @@ export const ArticleItem = ({
   imageAlt,
   link,
   linkTarget,
+  logos,
   metadata,
   summary,
   triangleColor,
@@ -54,7 +56,7 @@ export const ArticleItem = ({
         <div className="relative">
           {badge && badgeVariant && (
             <Label className="absolute" variant={badgeVariant}>
-              {badge}
+              {badge}{logos}
             </Label>
           )}
           {image && (

@@ -6,6 +6,7 @@ export const newsArticleFragment = groq`
   _id,
   _type,
   title,
+  "logos": clubs[]->logo.asset->url,
   articleImage {
     ${imageFragment}
   },

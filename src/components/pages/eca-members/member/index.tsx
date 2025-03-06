@@ -5,18 +5,20 @@ import SocialShare from "@/components/layout/social-share";
 import CrumbTrail from "@/components/layout/crumb-trail";
 import { SanitySocialShare } from "@/sanity/schema/presentation/layout/socialShare";
 import { SanityNewsArticle } from "@/sanity/schema/information/newsArticle";
+import club, { SanityClub } from "@/sanity/schema/information/club";
 import { ArticleList } from "@/components/storybook/article-list";
 import { makeImageUrl } from "@/sanity/lib/image";
 import { PATH_NEWS } from "@/configs/articles";
 
-export interface NewsListingPageProps {
+export interface MemberListingPageProps {
   data: SanityNewsArticle[] | null;
+  club: SanityClub;
   socialShare: SanitySocialShare | null;
 }
 
-const NewsListingPage: FC<NewsListingPageProps> = ({ data, socialShare }) => {
+const MemberListingPage: FC<MemberListingPageProps> = ({ data, club, socialShare }) => {
   const rootUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
+  const club1 = club;
   const articles: ArticleListItem[] =
     data?.map(article => ({
       id: article._id,
@@ -34,9 +36,10 @@ const NewsListingPage: FC<NewsListingPageProps> = ({ data, socialShare }) => {
     <main className="bg-grey">
       <CrumbTrail colour="neutral" currentPage="News" variant="primary" />
       <SocialShare rootUrl={rootUrl ?? ""} socialShare={socialShare} />
+      <div className="flex justify-center text-4xl text-cyan-800 items-center p-4 pt-10">{club1.club}</div>
       <ArticleList articles={articles} title="News" variant="primary" />
     </main>
   );
 };
 
-export default NewsListingPage;
+export default MemberListingPage;

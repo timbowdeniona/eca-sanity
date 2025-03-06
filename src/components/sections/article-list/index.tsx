@@ -33,6 +33,7 @@ const ArticleListSection: FC<Props> = ({ section }) => {
           externalUrlField: "articleLink",
           rootPath: PATH_NEWS,
         }),
+        logos: (item as SanityNewsArticle).logos,
         openInNewTab: item.openInNewTab ?? false,
       };
     } else if (item._type === "blogPost") {

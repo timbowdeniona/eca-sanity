@@ -7,6 +7,7 @@ import { Pagination } from "@/components/storybook/pagination";
 import { cn } from "@/utils/helpers/cn";
 import { SanityClub } from "@/sanity/schema/information/club";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../storybook/button";
 import { ResetIcon } from "@sanity/icons";
 import { AlphabetTabs } from "../storybook/alphabet-tabs";
@@ -196,7 +197,12 @@ export const ClubSearch = ({
                       />
                     </div>
                   )}
-                  <span>{club.club}</span>
+                  <Link 
+                    aria-label={club.club}
+                    href={"./eca-members/" + club._id}
+                    title={club.club}>
+                      {club.club}
+                    </Link>
                 </div>
                 <div className="flex items-center p-4">
                   <span>{club.country}</span>

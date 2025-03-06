@@ -18,8 +18,14 @@ export const getNewsArticlesQuery = groq`
   }
 `;
 
+export const getNewsArticlesByClubQuery = groq`
+  *[_type == "newsArticle" && $id in clubs[]._ref] {
+    ${newsArticleFragment}
+  }
+`;
+
 export const getNewsArticleByIdQuery = groq`
-  *[_type == "newsArticle" && _id == $id][0] {
+  *[_type == "newsArticle" && _id == $id] {
     ${newsArticleFragment}
   }
 `;
