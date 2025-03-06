@@ -8,9 +8,9 @@ import {
   getBlogPostsForSitemapQuery,
   getNewsArticleByIdQuery,
   getNewsArticleBySlugQuery,
+  getNewsArticlesByClubQuery,
   getNewsArticlesForSitemapQuery,
   getNewsArticlesQuery,
-  getNewsArticlesByClubQuery,
   getNewsArticleWithMetaBySlugQuery,
 } from "@/sanity/services/queries/article";
 import {
@@ -48,7 +48,6 @@ export const getNewsArticles = async (): Promise<SanityNewsArticle[]> => {
   const { data } = await sanityFetch({
     query: getNewsArticlesQuery,
   });
-  console.log(data)
   return data;
 };
 
@@ -62,7 +61,6 @@ export const getNewsArticlesByClub = async (
     query: getNewsArticlesByClubQuery,
     params: { id },
   });
-  console.log(data)
   return data;
 };
 

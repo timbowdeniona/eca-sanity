@@ -6,13 +6,10 @@ import type { SanityClub } from "@/sanity/schema/information/club";
 import SocialShare from "@/components/layout/social-share";
 import CrumbTrail from "@/components/layout/crumb-trail";
 import { ClubSearch } from "@/components/club-search";
-import { SanityNewsArticle } from "@/sanity/schema/information/newsArticle";
-
 export interface PageProps {
   breadcrumbEnabled?: boolean;
   page: SanityPage | null;
   clubs: SanityClub[] | null;
-  data: SanityNewsArticle[];
   socialShare?: SanitySocialShare | null;
 }
 

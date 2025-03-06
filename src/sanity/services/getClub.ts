@@ -12,7 +12,7 @@ export const getClubs = async (): Promise<SanityClub[]> => {
   return data;
 };
 
-export const getClubById = async ( id : string): Promise<SanityClub> => {
+export const getClubById = async (id: string): Promise<SanityClub> => {
   const { data } = await sanityFetch({
     query: CLUBS_QUERY_BY_ID,
     params: { id },

@@ -29,5 +29,7 @@ export default async function NewsRoute(props: {
     return notFound();
   }
 
-  return <MemberListingPage data={data} socialShare={socialShare} club={club} />;
+  return <
+    MemberListingPage club={club} data={data} socialShare={socialShare} 
+  />;
 }
