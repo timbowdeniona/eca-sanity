@@ -200,7 +200,8 @@ export const ClubSearch = ({
                   <Link
                     aria-label={club.club}
                     href={"./eca-members/" + club._id}
-                    title={club.club}>
+                    title={club.club}
+                  >
                     {club.club}
                   </Link>
                 </div>

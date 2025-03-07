@@ -62,15 +62,16 @@ export const ArticleItem = ({
         <p className="line-clamp-3 text-white">{summary}</p>
         <div className="flex space-x-4">
           {logos.map((logo, index) => (
-          <Image
-            key={index}
-            alt={imageAlt || ""}
-            className="object-cover"
-            height={32}
-            objectFit="cover"
-            src={logo}
-            width={40}
-          />))}
+            <Image
+              alt={imageAlt || ""}
+              className="object-cover"
+              height={32}
+              key={index}
+              objectFit="cover"
+              src={logo}
+              width={40}
+            />
+          ))}
         </div>
       </div>
     </article>

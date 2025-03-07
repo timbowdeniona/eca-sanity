@@ -56,7 +56,8 @@ export const ArticleItem = ({
         <div className="relative">
           {badge && badgeVariant && (
             <Label className="absolute" variant={badgeVariant}>
-              {badge}{logos}
+              {badge}
+              {logos}
             </Label>
           )}
           {image && (
@@ -64,7 +65,7 @@ export const ArticleItem = ({
               className={cn(
                 "w-full relative aspect-[16/9]",
                 triangleColor &&
-                "bg-grey flex flex-row justify-center items-center",
+                  "bg-grey flex flex-row justify-center items-center",
               )}
             >
               {triangleColor ? (

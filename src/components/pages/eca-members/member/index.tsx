@@ -5,7 +5,7 @@ import SocialShare from "@/components/layout/social-share";
 import CrumbTrail from "@/components/layout/crumb-trail";
 import { SanitySocialShare } from "@/sanity/schema/presentation/layout/socialShare";
 import { SanityNewsArticle } from "@/sanity/schema/information/newsArticle";
-import club, { SanityClub } from "@/sanity/schema/information/club";
+import { SanityClub } from "@/sanity/schema/information/club";
 import { ArticleList } from "@/components/storybook/article-list";
 import { makeImageUrl } from "@/sanity/lib/image";
 import { PATH_NEWS } from "@/configs/articles";
@@ -16,7 +16,11 @@ export interface MemberListingPageProps {
   socialShare: SanitySocialShare | null;
 }
 
-const MemberListingPage: FC<MemberListingPageProps> = ({ data, club, socialShare }) => {
+const MemberListingPage: FC<MemberListingPageProps> = ({
+  data,
+  club,
+  socialShare,
+}) => {
   const rootUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const club1 = club;
   const articles: ArticleListItem[] =
@@ -36,7 +40,9 @@ const MemberListingPage: FC<MemberListingPageProps> = ({ data, club, socialShare
     <main className="bg-grey">
       <CrumbTrail colour="neutral" currentPage="News" variant="primary" />
       <SocialShare rootUrl={rootUrl ?? ""} socialShare={socialShare} />
-      <div className="flex justify-center text-4xl text-cyan-800 items-center p-4 pt-10">{club1.club}</div>
+      <div className="flex items-center justify-center p-4 pt-10 text-4xl text-cyan-800 ">
+        {club1.club}
+      </div>
       <ArticleList articles={articles} title="News" variant="primary" />
     </main>
   );
