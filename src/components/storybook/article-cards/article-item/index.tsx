@@ -21,7 +21,7 @@ export type ArticleItemProps = {
   imageAlt?: string;
   link: string;
   linkTarget?: HTMLAttributeAnchorTarget;
-  logos: string[];
+  logos?: string[];
   metadata?: string;
   summary: string;
   triangleColor?: CSSProperties["color"];

@@ -14,7 +14,7 @@ export type ArticleListItem = {
   headline: string;
   summary: string;
   link: string;
-  logos: string[];
+  logos?: string[];
   openInNewTab?: boolean;
 };
 
@@ -70,7 +70,7 @@ export const ArticleList = ({
                 imageAlt={article.imageAlt}
                 link={article.link}
                 linkTarget={article.openInNewTab ? "_blank" : undefined}
-                logos={article.logos}
+                logos={article.logos ? article.logos : []}
                 summary={article.summary}
               />
             </li>

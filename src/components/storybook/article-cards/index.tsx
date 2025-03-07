@@ -25,10 +25,10 @@ export type ArticleCardsItem = {
   image?: string;
   imageAlt?: string;
   isResource?: boolean;
-  logos: string[];
   metadata?: string;
   summary: string;
   link: string;
+  logos?: string[];
   openInNewTab?: boolean;
   type?: ArticleCardContentType;
 };
