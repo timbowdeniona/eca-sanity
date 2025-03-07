@@ -52,6 +52,7 @@ const ArticleCardsSection: FC<Props> = ({ section }) => {
       articles={articles}
       description={section.description}
       linkTarget={cta?.openInNewTab ? "_blank" : undefined}
+      logos={true}
       title={section.title}
       titlePlacement={section.titlePlacement}
       variant={section.variant}
